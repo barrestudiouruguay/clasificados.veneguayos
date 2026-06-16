@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://unpkg.com https://cdn.jsdelivr.net https://fonts.googleapis.com https://fonts.gstatic.com; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://unpkg.com https://cdn.jsdelivr.net; img-src 'self' data: blob: https:; font-src 'self' data: https://fonts.gstatic.com;">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Empleos · Clasificados VeneGuayos</title>
@@ -8,7 +9,9 @@
 <meta property="og:title" content="Empleos · Clasificados VeneGuayos">
 <meta property="og:image" content="assets/logo-mark.svg">
 <link rel="stylesheet" href="css/main.css">
-https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.js<script src="js/photos.js" defer></script>
+<script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="js/config.js"></script>
+<script src="js/photos.js" defer></script>
 <script src="js/app.js"></script>
 </head>
 <body>
@@ -58,13 +61,12 @@ https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.js<script src="js/ph
 
 <script>
 document.getElementById('hdr').innerHTML = renderHeader('empleos.html');
-// Apply photo when ready
-  function _applyBgPhotos() {
-    const el = document.getElementById('empBg');
-    if(el && window.IMG_MVD) el.style.backgroundImage = 'url(' + window.IMG_MVD + ')';
-  }
-  if(window._photosReady) _applyBgPhotos();
 document.getElementById('ftr').innerHTML = renderFooter();
+function _applyBgPhotos() {
+  const el = document.getElementById('empBg');
+  if(el && window.IMG_MVD) el.style.backgroundImage = 'url(' + window.IMG_MVD + ')';
+}
+if(window._photosReady) _applyBgPhotos();
 
 
 let allJobs = [];
