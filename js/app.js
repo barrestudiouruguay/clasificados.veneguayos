@@ -38,6 +38,7 @@ const RUBROS = {
 };
 
 function catLabel(id) { return (RUBROS[id]||{label:id}).label; }
+function catTone(id)  { return 'azul'; }
 
 function rubroChip(id) {
   const r = RUBROS[id] || { label: id, svg:'' };
