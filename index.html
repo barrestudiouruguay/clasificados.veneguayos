@@ -135,13 +135,17 @@ document.getElementById('ftr').innerHTML = renderFooter();
 document.getElementById('heroMark').innerHTML = LOGO_SVG_COLOR;
 document.getElementById('heroFlag').innerHTML = flagBar('pill');
 
-// Photo backgrounds — applied after deferred photos.js runs
-document.addEventListener('DOMContentLoaded', function() {
-  const heroBg = document.getElementById('heroBg');
-  if(heroBg && window.IMG_RAMBLA) heroBg.style.backgroundImage = 'url(' + window.IMG_RAMBLA + ')';
-  const cityBg = document.getElementById('cityBg');
-  if(cityBg && window.IMG_MVD) cityBg.style.backgroundImage = 'url(' + window.IMG_MVD + ')';
-});
+// Photo backgrounds — poll until photos.js finishes its internal setTimeout
+(function tryApplyPhotos() {
+  if(window._photosReady) {
+    var heroBg = document.getElementById('heroBg');
+    if(heroBg && window.IMG_RAMBLA) heroBg.style.backgroundImage = 'url(' + window.IMG_RAMBLA + ')';
+    var cityBg = document.getElementById('cityBg');
+    if(cityBg && window.IMG_MVD) cityBg.style.backgroundImage = 'url(' + window.IMG_MVD + ')';
+  } else {
+    setTimeout(tryApplyPhotos, 30);
+  }
+})();
 
 // Rubros chips
 document.getElementById('rubroRow').innerHTML = Object.entries(RUBROS).slice(0,12).map(([id,r]) =>
