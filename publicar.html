@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Publicar anuncio · Clasificados VeneGuayos</title>
+<meta name="description" content="Portal de empleos y alojamiento para migrantes en Uruguay. Desde 2014 conectando personas con oportunidades reales.">
+<link rel="stylesheet" href="css/main.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/photos.js" defer></script>
+<script src="js/app.js"></script>
+
+</head>
+<body>
+<div id="hdr"></div>
+
+<section id="pubHero" style="position:relative;padding:64px 24px;text-align:center;overflow:hidden;">
+  <div id="pubBg" style="position:absolute;inset:0;background-size:cover;background-position:center;"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(26,34,48,.75),rgba(26,34,48,.6));"></div>
+  <div style="position:relative;max-width:600px;margin:0 auto;color:#fff;">
+    <div class="section-eyebrow" style="color:var(--sol);">Para empleadores y propietarios</div>
+    <h1 style="font-family:var(--f-archivo);font-weight:800;font-size:clamp(28px,5vw,44px);letter-spacing:-.02em;line-height:1.05;margin-bottom:14px;">Publicá tu anuncio<br>y llegá a +35.300 personas</h1>
+    <p style="font-size:16px;opacity:.85;line-height:1.65;max-width:480px;margin:0 auto;">Migrantes y personas de cualquier nacionalidad buscan trabajo y vivienda en Uruguay todos los días. Tu anuncio llega directo a ellos.</p>
+  </div>
+</section>
+
+<section style="max-width:960px;margin:0 auto;padding:52px 24px 64px;">
+
+  <!-- TABS -->
+  <div style="display:flex;gap:8px;margin-bottom:36px;background:var(--niebla);padding:6px;border-radius:var(--r-m);width:fit-content;">
+    <button onclick="showTab('empleo')" id="tabEmpleo" style="padding:10px 24px;border-radius:var(--r-s);border:none;font-weight:700;font-size:14px;cursor:pointer;font-family:var(--f-source);background:var(--azul);color:#fff;transition:all .15s;">💼 Empleo</button>
+    <button onclick="showTab('alojamiento')" id="tabAloj" style="padding:10px 24px;border-radius:var(--r-s);border:none;font-weight:700;font-size:14px;cursor:pointer;font-family:var(--f-source);background:transparent;color:var(--piedra);transition:all .15s;">🏠 Alojamiento</button>
+  </div>
+
+  <!-- TAB EMPLEO -->
+  <div id="tabContentEmpleo">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;">
+      <div>
+        <h2 style="font-family:var(--f-archivo);font-weight:800;font-size:24px;margin-bottom:20px;">¿Cómo publicar un empleo?</h2>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <div style="width:32px;height:32px;border-radius:50%;background:var(--azul);color:#fff;font-family:var(--f-archivo);font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</div>
+            <div><strong style="font-family:var(--f-archivo);font-size:15px;">Envianos el aviso</strong><p style="font-size:14px;color:var(--piedra);margin-top:3px;line-height:1.55;">Por Instagram o email con título, descripción, requisitos, zona y datos de contacto.</p></div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <div style="width:32px;height:32px;border-radius:50%;background:var(--azul);color:#fff;font-family:var(--f-archivo);font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</div>
+            <div><strong style="font-family:var(--f-archivo);font-size:15px;">Revisión y aceptación</strong><p style="font-size:14px;color:var(--piedra);margin-top:3px;line-height:1.55;">Revisamos el aviso en 24-48h. Te notificamos si fue aceptado o necesita ajustes.</p></div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <div style="width:32px;height:32px;border-radius:50%;background:var(--azul);color:#fff;font-family:var(--f-archivo);font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</div>
+            <div><strong style="font-family:var(--f-archivo);font-size:15px;">Pago</strong><p style="font-size:14px;color:var(--piedra);margin-top:3px;line-height:1.55;">Realizás el pago según el plan elegido. Aceptamos transferencia y MercadoPago.</p></div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <div style="width:32px;height:32px;border-radius:50%;background:var(--sol);color:#fff;font-family:var(--f-archivo);font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">4</div>
+            <div><strong style="font-family:var(--f-archivo);font-size:15px;">Publicación</strong><p style="font-size:14px;color:var(--piedra);margin-top:3px;line-height:1.55;">El aviso se publica en la web y en nuestras redes (Instagram, Facebook). Recibís las postulaciones directo en tu email o WhatsApp.</p></div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <div style="width:32px;height:32px;border-radius:50%;background:var(--piedra);color:#fff;font-family:var(--f-archivo);font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">5</div>
+            <div><strong style="font-family:var(--f-archivo);font-size:15px;">Baja del anuncio</strong><p style="font-size:14px;color:var(--piedra);margin-top:3px;line-height:1.55;">El aviso se da de baja automáticamente al vencer el plazo, o antes si ya cubriste el puesto. Solo avisanos.</p></div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div style="background:var(--blanco);border:1px solid var(--linea);border-radius:var(--r-l);padding:24px;box-shadow:var(--sh-soft);">
+          <h3 style="font-family:var(--f-archivo);font-weight:800;font-size:17px;margin-bottom:16px;">Planes disponibles</h3>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="border:1.5px solid var(--linea);border-radius:var(--r-m);padding:16px;">
+              <div style="font-family:var(--f-archivo);font-weight:800;font-size:15px;margin-bottom:4px;">Básico</div>
+              <div style="font-size:13px;color:var(--piedra);line-height:1.5;">Publicación en web · 30 días</div>
+            </div>
+            <div style="border:2px solid var(--azul);border-radius:var(--r-m);padding:16px;background:rgba(46,125,177,.04);">
+              <div style="display:flex;justify-content:space-between;align-items:center;"><div style="font-family:var(--f-archivo);font-weight:800;font-size:15px;color:var(--azul);">Destacado ⭐</div><span style="background:var(--azul);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:var(--r-pill);">MÁS POPULAR</span></div>
+              <div style="font-size:13px;color:var(--piedra);line-height:1.5;margin-top:4px;">Web + publicación en Instagram y Facebook · 30 días · Marcado como destacado</div>
+            </div>
+          </div>
+          <p style="font-size:12px;color:var(--humo);margin-top:12px;line-height:1.5;">Consultanos por precios y disponibilidad. El primer aviso simple puede ser gratuito.</p>
+        </div>
+        <div style="background:var(--azul);border-radius:var(--r-l);padding:22px;color:#fff;text-align:center;">
+          <h3 style="font-family:var(--f-archivo);font-weight:800;font-size:16px;margin-bottom:8px;">¿Tenés un aviso para publicar?</h3>
+          <p style="font-size:13px;opacity:.85;margin-bottom:16px;line-height:1.5;">Escribinos y te asesoramos sin compromiso.</p>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <a href="https://instagram.com/clasificados.veneguayos" target="_blank" style="display:block;background:#fff;color:var(--azul);font-weight:700;font-size:13px;padding:10px 16px;border-radius:var(--r-s);text-decoration:none;text-align:center;">📷 Escribir por Instagram</a>
+            <a href="mailto:clasificados.veneguayos@gmail.com?subject=Quiero publicar un aviso de empleo" style="display:block;background:rgba(255,255,255,.15);color:#fff;font-weight:700;font-size:13px;padding:10px 16px;border-radius:var(--r-s);text-decoration:none;text-align:center;">✉ Enviar por email</a>
+            <a href="https://wa.me/598XXXXXXXX?text=Hola, quiero publicar un aviso de empleo en Clasificados VeneGuayos" target="_blank" style="display:block;background:#1FA855;color:#fff;font-weight:700;font-size:13px;padding:10px 16px;border-radius:var(--r-s);text-decoration:none;text-align:center;">💬 WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB ALOJAMIENTO -->
+  <div id="tabContentAloj" style="display:none;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;">
+      <div>
+        <h2 style="font-family:var(--f-archivo);font-weight:800;font-size:24px;margin-bottom:20px;">¿Cómo publicar un alojamiento?</h2>
+        <p style="font-size:15px;color:var(--piedra);line-height:1.75;margin-bottom:20px;">El proceso es igual al de empleos. Envianos los datos de tu alojamiento (tipo, zona, precio, descripción, fotos si tenés) y lo publicamos en la web y redes.</p>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div style="display:flex;gap:12px;align-items:center;background:var(--niebla);padding:14px;border-radius:var(--r-m);">
+            <span style="font-size:20px;">🏠</span><span style="font-size:14px;color:var(--tinta);">Habitación individual o compartida</span>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center;background:var(--niebla);padding:14px;border-radius:var(--r-m);">
+            <span style="font-size:20px;">🏢</span><span style="font-size:14px;color:var(--tinta);">Monoambiente o apartamento</span>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center;background:var(--niebla);padding:14px;border-radius:var(--r-m);">
+            <span style="font-size:20px;">🏡</span><span style="font-size:14px;color:var(--tinta);">Casa completa o residencia</span>
+          </div>
+        </div>
+      </div>
+      <div style="background:var(--vino);border-radius:var(--r-l);padding:24px;color:#fff;text-align:center;">
+        <h3 style="font-family:var(--f-archivo);font-weight:800;font-size:16px;margin-bottom:8px;">¿Tenés un alojamiento para ofrecer?</h3>
+        <p style="font-size:13px;opacity:.85;margin-bottom:16px;line-height:1.5;">Publicá y llegá a miles de personas buscando vivienda en Uruguay.</p>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <a href="https://instagram.com/clasificados.veneguayos" target="_blank" style="display:block;background:#fff;color:var(--vino);font-weight:700;font-size:13px;padding:10px 16px;border-radius:var(--r-s);text-decoration:none;text-align:center;">📷 Escribir por Instagram</a>
+          <a href="mailto:clasificados.veneguayos@gmail.com?subject=Quiero publicar un alojamiento" style="display:block;background:rgba(255,255,255,.15);color:#fff;font-weight:700;font-size:13px;padding:10px 16px;border-radius:var(--r-s);text-decoration:none;text-align:center;">✉ Enviar por email</a>
+          <a href="https://wa.me/598XXXXXXXX?text=Hola, quiero publicar un aviso de alojamiento en Clasificados VeneGuayos" target="_blank" style="display:block;background:#1FA855;color:#fff;font-weight:700;font-size:13px;padding:10px 16px;border-radius:var(--r-s);text-decoration:none;text-align:center;">💬 WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="ftr"></div>
+<script>
+document.getElementById('hdr').innerHTML = renderHeader('publicar.html');
+document.getElementById('ftr').innerHTML = renderFooter();
+// Apply photo when ready
+  function _applyBgPhotos() {
+    const el = document.getElementById('pubBg');
+    if(el && window.IMG_CIUDAD) el.style.backgroundImage = 'url(' + window.IMG_CIUDAD + ')';
+  }
+  if(window._photosReady) _applyBgPhotos();
+
+function showTab(tab) {
+  const isEmpleo = tab === 'empleo';
+  document.getElementById('tabContentEmpleo').style.display = isEmpleo ? 'block' : 'none';
+  document.getElementById('tabContentAloj').style.display   = isEmpleo ? 'none' : 'block';
+  document.getElementById('tabEmpleo').style.background = isEmpleo ? 'var(--azul)' : 'transparent';
+  document.getElementById('tabEmpleo').style.color = isEmpleo ? '#fff' : 'var(--piedra)';
+  document.getElementById('tabAloj').style.background = isEmpleo ? 'transparent' : 'var(--vino)';
+  document.getElementById('tabAloj').style.color = isEmpleo ? 'var(--piedra)' : '#fff';
+}
+</script>
+</body></html>

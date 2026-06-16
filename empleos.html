@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Empleos · Clasificados VeneGuayos</title>
+<meta name="description" content="Portal de empleos para venezolanos y migrantes en Uruguay.">
+<meta property="og:title" content="Empleos · Clasificados VeneGuayos">
+<meta property="og:image" content="assets/logo-mark.svg">
+<link rel="stylesheet" href="css/main.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/photos.js" defer></script>
+<script src="js/app.js"></script>
+</head>
+<body>
+<div id="hdr"></div>
+<div style="max-width:1160px;margin:0 auto;padding:32px 24px 64px;display:grid;grid-template-columns:255px 1fr;gap:28px;align-items:start;" id="mainGrid">
+
+<!-- SIDEBAR -->
+<aside style="position:sticky;top:80px;display:flex;flex-direction:column;gap:14px;">
+  <div style="background:var(--blanco);border:1px solid var(--linea);border-radius:var(--r-l);padding:20px;box-shadow:var(--sh-soft);">
+    <div style="font-family:var(--f-archivo);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--humo);margin-bottom:12px;">Categoría</div>
+    <div id="catFilters" style="display:flex;flex-direction:column;gap:7px;"></div>
+  </div>
+  <div style="background:var(--blanco);border:1px solid var(--linea);border-radius:var(--r-l);padding:20px;box-shadow:var(--sh-soft);">
+    <div style="font-family:var(--f-archivo);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--humo);margin-bottom:12px;">Jornada</div>
+    <div id="tipoFilters" style="display:flex;flex-direction:column;gap:7px;"></div>
+  </div>
+  <div style="background:var(--blanco);border:1px solid var(--linea);border-radius:var(--r-l);padding:20px;box-shadow:var(--sh-soft);">
+    <div style="font-family:var(--f-archivo);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--humo);margin-bottom:12px;">Zona</div>
+    <div id="zonaFilters" style="display:flex;flex-direction:column;gap:7px;"></div>
+  </div>
+  <div style="background:var(--azul);border-radius:var(--r-l);padding:22px;color:#fff;text-align:center;">
+    <h3 style="font-family:var(--f-archivo);font-weight:800;font-size:15px;margin-bottom:8px;">¿Tenés un aviso para publicar?</h3>
+    <p style="font-size:12px;opacity:.8;margin-bottom:14px;line-height:1.55;">Conocé cómo publicar y los planes disponibles.</p>
+    <a href="publicar.html" style="display:block;background:#fff;color:var(--azul);font-weight:700;font-size:13px;padding:10px 14px;border-radius:var(--r-s);text-decoration:none;text-align:center;">Ver cómo publicar →</a>
+  </div>
+</aside>
+
+<!-- LISTADO -->
+<section>
+  <div style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap;align-items:center;">
+    <div style="flex:1;min-width:200px;background:var(--blanco);border:1.5px solid var(--linea);border-radius:var(--r-s);display:flex;align-items:center;padding:0 14px;box-shadow:var(--sh-soft);">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--humo)" stroke-width="2" stroke-linecap="round" style="flex-shrink:0;margin-right:8px;"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input id="searchQ" type="text" placeholder="Buscar puesto, empresa, zona…" style="border:none;outline:none;padding:11px 0;font-size:14px;width:100%;font-family:var(--f-source);color:var(--tinta);background:transparent;">
+    </div>
+    <select id="sortBy" class="form-select" style="width:auto;min-width:170px;">
+      <option value="newest">Más recientes</option>
+      <option value="urgent">Urgentes primero</option>
+    </select>
+  </div>
+  <div style="font-size:13px;color:var(--humo);margin-bottom:16px;font-family:var(--f-archivo);" id="resultCount">Cargando…</div>
+  <div class="cards-grid" id="jobsList">
+    <div class="empty-state" style="grid-column:1/-1;"><div class="es-icon">⏳</div><p>Cargando avisos…</p></div>
+  </div>
+</section>
+</div>
+<div id="ftr"></div>
+
+<script>
+document.getElementById('hdr').innerHTML = renderHeader('empleos.html');
+// Apply photo when ready
+  function _applyBgPhotos() {
+    const el = document.getElementById('empBg');
+    if(el && window.IMG_MVD) el.style.backgroundImage = 'url(' + window.IMG_MVD + ')';
+  }
+  if(window._photosReady) _applyBgPhotos();
+document.getElementById('ftr').innerHTML = renderFooter();
+
+
+let allJobs = [];
+let activeFilters = {cats:[],tipos:[],zonas:[]};
+const urlP = new URLSearchParams(location.search);
+const initQ = urlP.get('q')||'';
+const initCat = urlP.get('cat')||'';
+if(initQ) document.getElementById('searchQ').value = initQ;
+if(initCat) activeFilters.cats = [initCat];
+
+function checkLabel(label,value,group) {
+  const checked = activeFilters[group].includes(value) ? 'checked' : '';
+  return `<label style="display:flex;align-items:center;gap:9px;font-size:13px;cursor:pointer;padding:3px 0;color:var(--tinta);font-family:var(--f-source);">
+    <input type="checkbox" ${checked} onchange="toggleFilter('${group}','${value}',this.checked)" style="accent-color:var(--azul);width:15px;height:15px;cursor:pointer;flex-shrink:0;">
+    ${label}
+  </label>`;
+}
+
+function buildFilters(jobs) {
+  const cats = [...new Set(jobs.map(j=>j.categoria))];
+  document.getElementById('catFilters').innerHTML = cats.map(c =>
+    checkLabel(`<span style="display:inline-flex;align-items:center;gap:7px;"><span style="width:14px;height:14px;color:${catTone(c)==='vino'?'var(--vino)':'var(--azul)'};">${(RUBROS[c]||{svg:''}).svg}</span>${catLabel(c)}</span>`, c, 'cats')
+  ).join('');
+  const tipos = [...new Set(jobs.map(j=>j.tipo_jornada))];
+  document.getElementById('tipoFilters').innerHTML = tipos.map(t => checkLabel(t,t,'tipos')).join('');
+  const zonas = [...new Set(jobs.map(j=>j.zona))];
+  document.getElementById('zonaFilters').innerHTML = zonas.map(z => checkLabel(z,z,'zonas')).join('');
+}
+
+function toggleFilter(type,value,checked) {
+  if(checked){ if(!activeFilters[type].includes(value)) activeFilters[type].push(value); }
+  else activeFilters[type] = activeFilters[type].filter(v=>v!==value);
+  renderFiltered();
+}
+
+function renderFiltered() {
+  const q = document.getElementById('searchQ').value.toLowerCase();
+  const sort = document.getElementById('sortBy').value;
+  let jobs = allJobs.filter(j => {
+    const mCat  = !activeFilters.cats.length  || activeFilters.cats.includes(j.categoria);
+    const mTipo = !activeFilters.tipos.length || activeFilters.tipos.includes(j.tipo_jornada);
+    const mZona = !activeFilters.zonas.length || activeFilters.zonas.includes(j.zona);
+    const mQ    = !q || j.titulo.toLowerCase().includes(q)||(j.empresa||'').toLowerCase().includes(q)||(j.zona||'').toLowerCase().includes(q)||catLabel(j.categoria).toLowerCase().includes(q);
+    return mCat && mTipo && mZona && mQ;
+  });
+  if(sort==='urgent') jobs = [...jobs.filter(j=>j.urgente),...jobs.filter(j=>!j.urgente)];
+  document.getElementById('resultCount').textContent = `${jobs.length} resultado${jobs.length!==1?'s':''} encontrado${jobs.length!==1?'s':''}`;
+  document.getElementById('jobsList').innerHTML = jobs.length
+    ? jobs.map(j=>renderJobCard(j)).join('')
+    : '<div class="empty-state" style="grid-column:1/-1;"><div class="es-icon">🔍</div><h3>Sin resultados</h3><p>Probá con otros filtros.</p></div>';
+}
+
+document.getElementById('searchQ').addEventListener('input', renderFiltered);
+document.getElementById('sortBy').addEventListener('change', renderFiltered);
+
+async function loadJobs() {
+  try {
+    const {data,error} = await getSupabase().from('empleos').select('*').eq('activo',true).order('created_at',{ascending:false});
+    if(error) throw error;
+    allJobs = data;
+    data.forEach(j=>cacheJob(j));
+    buildFilters(data);
+    renderFiltered();
+  } catch(e) {
+    document.getElementById('jobsList').innerHTML = '<div class="empty-state" style="grid-column:1/-1;"><div class="es-icon">⚠️</div><h3>Error de conexión</h3><p>Verificá Supabase en js/config.js</p></div>';
+  }
+}
+loadJobs();
+</script>
+</body></html>

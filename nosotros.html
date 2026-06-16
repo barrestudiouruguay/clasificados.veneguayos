@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nosotros · Clasificados VeneGuayos</title>
+<meta name="description" content="Portal de empleos y alojamiento para migrantes en Uruguay. Desde 2014 conectando personas con oportunidades reales.">
+<link rel="stylesheet" href="css/main.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/photos.js" defer></script>
+<script src="js/app.js"></script>
+
+</head>
+<body>
+<div id="hdr"></div>
+
+<section id="nosHero" style="position:relative;padding:72px 24px;text-align:center;overflow:hidden;">
+  <div id="nosBg" style="position:absolute;inset:0;background-size:cover;background-position:center;"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(26,34,48,.75),rgba(26,34,48,.6));"></div>
+  <div style="position:relative;max-width:620px;margin:0 auto;color:#fff;">
+    <div style="width:120px;margin:0 auto 18px;" id="heroMarkW"></div>
+    <div style="width:160px;margin:0 auto 22px;" id="heroFlagN"></div>
+    <h1 style="font-family:var(--f-archivo);font-weight:800;font-size:clamp(26px,5vw,42px);letter-spacing:-.02em;line-height:1.05;margin-bottom:12px;text-shadow:0 2px 10px rgba(0,0,0,.4);">Desde 2014, conectando<br>migrantes con Uruguay</h1>
+    <p style="font-size:16px;opacity:.82;line-height:1.65;text-shadow:0 1px 6px rgba(0,0,0,.4);">Nacimos en Facebook y crecemos en web. Más de 35.300 personas confían en nosotros.</p>
+  </div>
+</section>
+
+<section style="padding:56px 24px;">
+  <div style="max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;">
+    <div>
+      <div class="section-eyebrow">Quiénes somos</div>
+      <h2 class="section-title" style="margin-bottom:20px;">Una comunidad<br>con más de 10 años</h2>
+      <p style="font-size:15px;line-height:1.8;color:var(--piedra);margin-bottom:14px;">Clasificados VeneGuayos nació en <strong style="color:var(--tinta);">Facebook en 2014</strong>, cuando la comunidad migrante en Uruguay era pequeña y las oportunidades laborales eran difíciles de encontrar para quienes llegaban al país.</p>
+      <p style="font-size:15px;line-height:1.8;color:var(--piedra);margin-bottom:14px;">Con el tiempo crecimos hasta convertirnos en una comunidad de más de <strong style="color:var(--azul);">35.300 seguidores</strong>, siendo el referente para migrantes y personas de cualquier nacionalidad que buscan trabajo y vivienda en Uruguay.</p>
+      <p style="font-size:15px;line-height:1.8;color:var(--piedra);">Hoy damos el siguiente paso con este portal: una plataforma profesional donde podés buscar empleos y alojamiento, y contactar directamente a quien necesitás.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div style="background:var(--niebla);border-radius:var(--r-l);padding:24px;">
+        <h3 style="font-family:var(--f-archivo);font-weight:800;font-size:15px;margin-bottom:16px;color:var(--tinta);">Nuestros números</h3>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div style="font-family:var(--f-archivo);font-size:2.1rem;font-weight:800;color:var(--azul);min-width:80px;">+35.300</div>
+            <div style="font-size:13px;color:var(--piedra);">personas en nuestra comunidad</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div style="font-family:var(--f-archivo);font-size:2.1rem;font-weight:800;color:var(--vino);min-width:80px;">Desde 2014</div>
+            <div style="font-size:13px;color:var(--piedra);">apoyando migrantes en Uruguay</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div style="font-family:var(--f-archivo);font-size:2.1rem;font-weight:800;color:var(--sol);min-width:80px;">+7.200</div>
+            <div style="font-size:13px;color:var(--piedra);">anuncios publicados (estimado)</div>
+          </div>
+        </div>
+      </div>
+      <div style="background:var(--azul);border-radius:var(--r-l);padding:22px;color:#fff;">
+        <h3 style="font-family:var(--f-archivo);font-weight:800;font-size:15px;margin-bottom:8px;">¿Tenés un aviso para publicar?</h3>
+        <p style="font-size:13px;opacity:.82;margin-bottom:14px;line-height:1.6;">Consultanos por planes y precios. El proceso es simple y rápido.</p>
+        <a href="publicar.html" style="display:inline-block;background:#fff;color:var(--azul);font-weight:700;font-size:13px;padding:9px 18px;border-radius:var(--r-s);text-decoration:none;">Ver cómo publicar →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="background:var(--blanco);border-top:1px solid var(--linea);padding:56px 24px;">
+  <div style="max-width:680px;margin:0 auto;">
+    <div class="section-eyebrow" style="text-align:center;">FAQ</div>
+    <h2 class="section-title" style="text-align:center;margin-bottom:32px;">Preguntas frecuentes</h2>
+    <div id="faqList" style="display:flex;flex-direction:column;gap:10px;"></div>
+  </div>
+</section>
+
+<div id="ftr"></div>
+<script>
+document.getElementById('hdr').innerHTML = renderHeader('nosotros.html');
+document.getElementById('ftr').innerHTML = renderFooter();
+document.getElementById('heroMarkW').innerHTML = LOGO_SVG_WHITE;
+document.getElementById('heroFlagN').innerHTML = flagBar('pill');
+// Apply photo when ready
+  function _applyBgPhotos() {
+    const el = document.getElementById('nosBg');
+    if(el && window.IMG_CIUDAD) el.style.backgroundImage = 'url(' + window.IMG_CIUDAD + ')';
+  }
+  if(window._photosReady) _applyBgPhotos();
+
+const faqs = [
+  ['¿Tengo que pagar para ver los avisos?','No. Todos los avisos son 100% gratuitos para quienes buscan trabajo o alojamiento.'],
+  ['¿Necesito registrarme para aplicar?','No. Contactás al empleador directamente con los datos que aparecen en el aviso, sin crear ninguna cuenta.'],
+  ['¿Los avisos son verificados?','Sí. Revisamos cada aviso antes de publicarlo para asegurarnos de que es legítimo.'],
+  ['¿Puedo publicar un aviso?','¡Sí! Podés enviarnos tu aviso por Instagram, email o WhatsApp. Tenemos planes para empleos y alojamiento. <a href="publicar.html" style="color:var(--azul);">Ver planes y proceso →</a>'],
+  ['¿Hay avisos fuera de Montevideo?','Sí, publicamos en todo Uruguay: Canelones, Maldonado, Colonia, Salto, Paysandú, Rivera, Rocha, Soriano, Artigas, Tacuarembó, San José, Florida, Durazno y más.'],
+  ['¿Con qué documentos puedo trabajar en Uruguay?','Con cédula de identidad uruguaya, o con la constancia de inicio de trámite de residencia y el pasaporte inscripto en Banco de Previsión Social (BPS).'],
+];
+
+document.getElementById('faqList').innerHTML = faqs.map((f,i) => `
+  <div style="border:1px solid var(--linea);border-radius:var(--r-m);overflow:hidden;">
+    <button onclick="toggleFaq(${i})" style="width:100%;text-align:left;padding:16px 20px;background:none;border:none;cursor:pointer;font-weight:700;font-size:15px;display:flex;justify-content:space-between;align-items:center;font-family:var(--f-source);color:var(--tinta);">
+      ${f[0]}<span id="fi${i}" style="color:var(--azul);font-size:1.2rem;line-height:1;flex-shrink:0;margin-left:12px;">+</span>
+    </button>
+    <div id="fa${i}" style="display:none;padding:0 20px 16px;font-size:14px;line-height:1.7;color:var(--piedra);">${f[1]}</div>
+  </div>`).join('');
+
+function toggleFaq(i) {
+  const a=document.getElementById('fa'+i), ic=document.getElementById('fi'+i);
+  const open=a.style.display==='block';
+  a.style.display=open?'none':'block';
+  ic.textContent=open?'+':'−';
+}
+</script>
+</body></html>
