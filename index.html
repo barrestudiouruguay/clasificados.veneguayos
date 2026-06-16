@@ -6,9 +6,9 @@
 <title>Inicio · Clasificados VeneGuayos</title>
 <meta name="description" content="Portal de empleos y alojamiento para migrantes en Uruguay. Desde 2014 conectando personas con oportunidades reales.">
 <link rel="stylesheet" href="css/main.css">
-<script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="js/config.js"></script>
-
+<script src="js/photos.js" defer></script>
 <script src="js/app.js"></script>
 
 </head>
@@ -135,21 +135,13 @@ document.getElementById('ftr').innerHTML = renderFooter();
 document.getElementById('heroMark').innerHTML = LOGO_SVG_COLOR;
 document.getElementById('heroFlag').innerHTML = flagBar('pill');
 
-// Photo backgrounds
-if(typeof IMG_RAMBLA !== 'undefined') {
-  // Apply photo when ready
-  function _applyBgPhotos() {
-    const el = document.getElementById('heroBg');
-    if(el && window.IMG_RAMBLA) el.style.backgroundImage = 'url(' + window.IMG_RAMBLA + ')';
-  }
-  if(window._photosReady) _applyBgPhotos();
-  // Apply photo when ready
-  function _applyBgPhotos() {
-    const el = document.getElementById('cityBg');
-    if(el && window.IMG_MVD) el.style.backgroundImage = 'url(' + window.IMG_MVD + ')';
-  }
-  if(window._photosReady) _applyBgPhotos();
-}
+// Photo backgrounds — applied after deferred photos.js runs
+document.addEventListener('DOMContentLoaded', function() {
+  const heroBg = document.getElementById('heroBg');
+  if(heroBg && window.IMG_RAMBLA) heroBg.style.backgroundImage = 'url(' + window.IMG_RAMBLA + ')';
+  const cityBg = document.getElementById('cityBg');
+  if(cityBg && window.IMG_MVD) cityBg.style.backgroundImage = 'url(' + window.IMG_MVD + ')';
+});
 
 // Rubros chips
 document.getElementById('rubroRow').innerHTML = Object.entries(RUBROS).slice(0,12).map(([id,r]) =>
@@ -169,10 +161,12 @@ function goSearch(cat) {
 
 async function loadRecent() {
   try {
-    const _sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    const {data, error} = await _sb.from('empleos').select('*').eq('activo', true).order('created_at', {ascending: false}).limit(6);
+    const [{data,error},{count}] = await Promise.all([
+      getSupabase().from('empleos').select('*').eq('activo',true).order('created_at',{ascending:false}).limit(6),
+      getSupabase().from('empleos').select('*',{count:'exact',head:true}).eq('activo',true).then(r=>({count:r.count}))
+    ]);
     if(error) throw error;
-    document.getElementById('statN').textContent = data.length;
+    document.getElementById('statN').textContent = count ?? data.length;
     data.forEach(j=>cacheJob(j));
     document.getElementById('recentGrid').innerHTML = data.length
       ? data.map(j=>renderJobCard(j)).join('')
@@ -183,5 +177,4 @@ async function loadRecent() {
 }
 loadRecent();
 </script>
-<script src="js/photos.js"></script>
 </body></html>
