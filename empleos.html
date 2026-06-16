@@ -124,14 +124,17 @@ document.getElementById('sortBy').addEventListener('change', renderFiltered);
 
 async function loadJobs() {
   try {
-    const {data,error} = await getSupabase().from('empleos').select('*').eq('activo',true).order('created_at',{ascending:false});
-    if(error) throw error;
+    const _sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const {data, error} = await _sb.from('empleos').select('*').eq('activo', true).order('created_at', {ascending: false});
+    console.log('empleos loaded:', data ? data.length : 0, 'error:', error);
+    if (error) throw error;
     allJobs = data;
-    data.forEach(j=>cacheJob(j));
+    data.forEach(j => cacheJob(j));
     buildFilters(data);
     renderFiltered();
   } catch(e) {
-    document.getElementById('jobsList').innerHTML = '<div class="empty-state" style="grid-column:1/-1;"><div class="es-icon">⚠️</div><h3>Error de conexión</h3><p>Verificá Supabase en js/config.js</p></div>';
+    console.error('loadJobs failed:', e);
+    document.getElementById('jobsList').innerHTML = '<div class="empty-state" style="grid-column:1/-1;"><div class="es-icon">!</div><h3>Error al cargar</h3><p>' + (e.message || JSON.stringify(e)) + '</p></div>';
   }
 }
 loadJobs();
