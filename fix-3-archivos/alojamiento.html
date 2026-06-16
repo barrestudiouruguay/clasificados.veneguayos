@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alojamiento · Clasificados VeneGuayos</title>
+<meta name="description" content="Habitaciones y apartamentos en alquiler para venezolanos y migrantes en Uruguay.">
+<link rel="stylesheet" href="css/main.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/photos.js" defer></script>
+<script src="js/app.js"></script>
+</head>
+<body>
+<div id="hdr"></div>
+
+<!-- HERO -->
+<section style="position:relative;padding:48px 24px 40px;text-align:center;overflow:hidden;"><div id="alojBg" style="position:absolute;inset:0;background-size:cover;background-position:center;"></div><div style="position:absolute;inset:0;background:rgba(26,34,48,.68);"></div><div style="position:relative;">
+  <div style="max-width:600px;margin:0 auto;">
+    <div class="section-eyebrow" style="color:var(--sol);">Vivienda</div>
+    <h1 style="font-family:var(--f-archivo);font-weight:800;font-size:clamp(26px,5vw,40px);letter-spacing:-.02em;color:#fff;margin-bottom:12px;text-shadow:0 2px 8px rgba(0,0,0,.4);" style="font-size:clamp(28px,5vw,42px);margin-bottom:12px;">Alojamiento</h1>
+    <p style="font-size:16px;color:rgba(255,255,255,.82);max-width:440px;margin:0 auto 28px;line-height:1.6;">Habitaciones, residencias y apartamentos disponibles en Uruguay.</p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+      <a href="alojamiento.html" class="btn btn-primary" style="background:#fff;color:var(--azul);">Ver avisos de alojamiento</a>
+      <a href="publicar.html" class="btn btn-outline" style="border-color:rgba(255,255,255,.5);color:#fff;">Publicar un anuncio</a>
+    </div>
+  </div>
+</div></section>
+
+<!-- FILTROS + LISTADO -->
+<div style="max-width:1160px;margin:0 auto;padding:32px 24px 64px;display:grid;grid-template-columns:240px 1fr;gap:28px;align-items:start;">
+
+<!-- SIDEBAR -->
+<aside style="position:sticky;top:80px;display:flex;flex-direction:column;gap:14px;">
+  <div style="background:var(--blanco);border:1px solid var(--linea);border-radius:var(--r-l);padding:20px;box-shadow:var(--sh-soft);">
+    <div style="font-family:var(--f-archivo);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--humo);margin-bottom:12px;">Tipo</div>
+    <div id="tipoFilters" style="display:flex;flex-direction:column;gap:7px;"></div>
+  </div>
+  <div style="background:var(--blanco);border:1px solid var(--linea);border-radius:var(--r-l);padding:20px;box-shadow:var(--sh-soft);">
+    <div style="font-family:var(--f-archivo);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--humo);margin-bottom:12px;">Zona</div>
+    <div id="zonaFilters" style="display:flex;flex-direction:column;gap:7px;"></div>
+  </div>
+  <div style="background:var(--blanco);border:1px solid var(--linea);border-radius:var(--r-l);padding:20px;box-shadow:var(--sh-soft);">
+    <div style="font-family:var(--f-archivo);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--humo);margin-bottom:12px;">Precio máximo</div>
+    <div id="precioFilters" style="display:flex;flex-direction:column;gap:7px;">
+      <label style="display:flex;align-items:center;gap:9px;font-size:13px;cursor:pointer;font-family:var(--f-source);color:var(--tinta);">
+        <input type="radio" name="precio" value="all" checked onchange="setPrecio('')" style="accent-color:var(--azul);"> Cualquier precio
+      </label>
+      <label style="display:flex;align-items:center;gap:9px;font-size:13px;cursor:pointer;font-family:var(--f-source);color:var(--tinta);">
+        <input type="radio" name="precio" value="10000" onchange="setPrecio(10000)" style="accent-color:var(--azul);"> Hasta $10.000
+      </label>
+      <label style="display:flex;align-items:center;gap:9px;font-size:13px;cursor:pointer;font-family:var(--f-source);color:var(--tinta);">
+        <input type="radio" name="precio" value="15000" onchange="setPrecio(15000)" style="accent-color:var(--azul);"> Hasta $15.000
+      </label>
+      <label style="display:flex;align-items:center;gap:9px;font-size:13px;cursor:pointer;font-family:var(--f-source);color:var(--tinta);">
+        <input type="radio" name="precio" value="20000" onchange="setPrecio(20000)" style="accent-color:var(--azul);"> Hasta $20.000
+      </label>
+      <label style="display:flex;align-items:center;gap:9px;font-size:13px;cursor:pointer;font-family:var(--f-source);color:var(--tinta);">
+        <input type="radio" name="precio" value="30000" onchange="setPrecio(30000)" style="accent-color:var(--azul);"> Hasta $30.000
+      </label>
+    </div>
+  </div>
+  <div style="background:var(--azul);border-radius:var(--r-l);padding:22px;color:#fff;text-align:center;">
+    <h3 style="font-family:var(--f-archivo);font-weight:800;font-size:15px;margin-bottom:8px;">¿Tenés una habitación?</h3>
+    <p style="font-size:12px;opacity:.8;margin-bottom:14px;line-height:1.55;">Publicá gratis y llega a más de 35.000 migrantes.</p>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <a href="https://instagram.com/clasificados.veneguayos" target="_blank" style="display:block;background:#fff;color:var(--azul);font-weight:700;font-size:12px;padding:8px 14px;border-radius:var(--r-s);text-decoration:none;text-align:center;">📷 Instagram</a>
+      <a href="mailto:clasificados.veneguayos@gmail.com?subject=Aviso de alojamiento para publicar" style="display:block;background:rgba(255,255,255,.15);color:#fff;font-weight:700;font-size:12px;padding:8px 14px;border-radius:var(--r-s);text-decoration:none;text-align:center;">✉ Email</a>
+    </div>
+  </div>
+</aside>
+
+<!-- LISTADO -->
+<section>
+  <div style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap;align-items:center;">
+    <div style="flex:1;min-width:200px;background:var(--blanco);border:1.5px solid var(--linea);border-radius:var(--r-s);display:flex;align-items:center;padding:0 14px;box-shadow:var(--sh-soft);">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--humo)" stroke-width="2" stroke-linecap="round" style="flex-shrink:0;margin-right:8px;"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input id="searchQ" type="text" placeholder="Buscar zona, barrio, características…" style="border:none;outline:none;padding:11px 0;font-size:14px;width:100%;font-family:var(--f-source);color:var(--tinta);background:transparent;">
+    </div>
+    <select id="sortBy" class="form-select" style="width:auto;min-width:170px;">
+      <option value="newest">Más recientes</option>
+      <option value="price_asc">Menor precio</option>
+      <option value="price_desc">Mayor precio</option>
+    </select>
+  </div>
+  <div style="font-size:13px;color:var(--humo);margin-bottom:16px;font-family:var(--f-archivo);" id="resultCount">Cargando…</div>
+  <div class="cards-grid" id="alojList">
+    <div class="empty-state" style="grid-column:1/-1;"><div class="es-icon">⏳</div><p>Cargando avisos…</p></div>
+  </div>
+</section>
+</div>
+
+<div id="ftr"></div>
+
+<script>
+document.getElementById('hdr').innerHTML = renderHeader('alojamiento.html');
+document.getElementById('ftr').innerHTML = renderFooter();
+function _applyBgPhotos() {
+  const el = document.getElementById('alojBg');
+  if(el && window.IMG_RAMBLA) el.style.backgroundImage = 'url(' + window.IMG_RAMBLA + ')';
+}
+if(window._photosReady) _applyBgPhotos();
+
+let allAloj = [];
+let activeFilters = { tipos:[], zonas:[] };
+let maxPrecio = '';
+
+function checkLabel(label, value, group) {
+  return `<label style="display:flex;align-items:center;gap:9px;font-size:13px;cursor:pointer;padding:3px 0;color:var(--tinta);font-family:var(--f-source);">
+    <input type="checkbox" onchange="toggleFilter('${group}','${value}',this.checked)" style="accent-color:var(--azul);width:15px;height:15px;cursor:pointer;flex-shrink:0;">
+    ${label}
+  </label>`;
+}
+
+function toggleFilter(type, value, checked) {
+  if(checked){ if(!activeFilters[type].includes(value)) activeFilters[type].push(value); }
+  else activeFilters[type] = activeFilters[type].filter(v=>v!==value);
+  renderFiltered();
+}
+
+function setPrecio(val) { maxPrecio = val; renderFiltered(); }
+
+function buildFilters(data) {
+  const tipos = [...new Set(data.map(a=>a.tipo))];
+  document.getElementById('tipoFilters').innerHTML = tipos.map(t => checkLabel(t, t, 'tipos')).join('');
+  const zonas = [...new Set(data.map(a=>a.zona))];
+  document.getElementById('zonaFilters').innerHTML = zonas.map(z => checkLabel(z, z, 'zonas')).join('');
+}
+
+function renderAlojCard(a) {
+  const uid = 'aloj_' + a.id;
+  const hasContact = a.contacto_email || a.contacto_wa;
+  const waMsg = encodeURIComponent('Hola, vi el aviso de ' + a.titulo + ' en Clasificados VeneGuayos y me interesa.');
+  const waNum = a.contacto_wa ? a.contacto_wa.replace(/\D/g,'') : '';
+
+  return `<div style="background:var(--blanco);border:1px solid var(--linea);border-radius:var(--r-l);box-shadow:var(--sh-card);overflow:hidden;">
+    <div style="height:5px;background:var(--vino);"></div>
+    <div style="padding:20px 22px 22px;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:12px;">
+        <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 13px;border-radius:var(--r-pill);background:rgba(142,31,63,.1);color:var(--vino);font-weight:700;font-size:13px;">🏠 ${a.tipo||'Alojamiento'}</span>
+        ${a.destacado?'<span style="background:var(--sol);color:#553a06;font-family:var(--f-archivo);font-weight:800;font-size:11px;padding:4px 10px;border-radius:var(--r-pill);">DESTACADO</span>':''}
+      </div>
+      <div style="font-family:var(--f-archivo);font-weight:800;font-size:21px;line-height:1.05;color:var(--tinta);margin-bottom:4px;">${a.titulo}</div>
+      <div style="font-size:14px;font-weight:600;color:var(--piedra);margin-bottom:12px;">${a.zona}${a.barrio?', '+a.barrio:''}</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px 16px;font-size:14px;color:var(--piedra);margin-bottom:14px;">
+        ${a.precio_num?`<span style="font-family:var(--f-archivo);font-weight:800;color:var(--vino);font-size:17px;">${a.precio}</span>`:`<span style="font-weight:600;">${a.precio||'A convenir'}</span>`}
+        ${a.ambientes?`<span>🛏 ${a.ambientes}</span>`:''}
+        ${a.expensas?`<span>+ expensas</span>`:''}
+      </div>
+      ${a.descripcion?`<div style="font-size:14px;color:var(--piedra);line-height:1.55;margin-bottom:18px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${a.descripcion}</div>`:''}
+      ${hasContact?`<div id="wrap_${uid}">
+        <button onclick="revealAloj('${uid}',${JSON.stringify(a).replace(/'/g,"\'")})" style="width:100%;border:none;cursor:pointer;background:var(--azul);color:#fff;font-family:var(--f-source);font-weight:700;font-size:15px;padding:13px 16px;border-radius:11px;display:flex;align-items:center;justify-content:center;gap:9px;transition:background .15s;" onmouseover="this.style.background='var(--azul-osc)'" onmouseout="this.style.background='var(--azul)'">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/></svg>
+          Ver datos de contacto
+        </button>
+      </div>`:''}
+    </div>
+  </div>`;
+}
+
+function revealAloj(uid, a) {
+  const waMsg = encodeURIComponent('Hola, vi el aviso de ' + a.titulo + ' en Clasificados VeneGuayos y me interesa.');
+  const waNum = a.contacto_wa ? a.contacto_wa.replace(/\D/g,'') : '';
+  const emailLink = a.contacto_email ? `<a href="mailto:${a.contacto_email}?subject=Consulta alojamiento: ${a.titulo}" style="display:flex;align-items:center;gap:11px;color:var(--tinta);text-decoration:none;font-weight:600;font-size:15px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--azul)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>${a.contacto_email}</a>` : '';
+  const waLink = waNum ? `<a href="https://wa.me/598${waNum}?text=${waMsg}" target="_blank" style="display:flex;align-items:center;gap:11px;color:var(--tinta);text-decoration:none;font-weight:600;font-size:15px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1FA855"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>${a.contacto_wa}</a>` : '';
+  const wrap = document.getElementById('wrap_' + uid);
+  if(wrap) wrap.innerHTML = `<div class="contact-block contact-anim">
+    <div class="contact-block-head">Contacto del propietario</div>
+    <div class="contact-block-body">${emailLink}${waLink}</div>
+    <div class="contact-block-foot">Información recibida del propietario. Para mayores detalles, consultar directamente.</div>
+  </div>`;
+}
+
+function renderFiltered() {
+  const q = document.getElementById('searchQ').value.toLowerCase();
+  const sort = document.getElementById('sortBy').value;
+  let data = allAloj.filter(a => {
+    const mTipo = !activeFilters.tipos.length || activeFilters.tipos.includes(a.tipo);
+    const mZona = !activeFilters.zonas.length || activeFilters.zonas.includes(a.zona);
+    const mPrecio = !maxPrecio || !a.precio_num || a.precio_num <= maxPrecio;
+    const mQ = !q || (a.titulo||'').toLowerCase().includes(q) || (a.zona||'').toLowerCase().includes(q) || (a.barrio||'').toLowerCase().includes(q) || (a.descripcion||'').toLowerCase().includes(q);
+    return mTipo && mZona && mPrecio && mQ;
+  });
+  if(sort==='price_asc') data.sort((a,b)=>(a.precio_num||999999)-(b.precio_num||999999));
+  if(sort==='price_desc') data.sort((a,b)=>(b.precio_num||0)-(a.precio_num||0));
+  document.getElementById('resultCount').textContent = `${data.length} aviso${data.length!==1?'s':''} encontrado${data.length!==1?'s':''}`;
+  document.getElementById('alojList').innerHTML = data.length
+    ? data.map(a=>renderAlojCard(a)).join('')
+    : '<div class="empty-state" style="grid-column:1/-1;"><div class="es-icon">🏠</div><h3>Sin resultados</h3><p>Probá con otros filtros o <a href="https://instagram.com/clasificados.veneguayos" target="_blank" style="color:var(--azul);">escribinos por Instagram</a> para más opciones.</p></div>';
+}
+
+document.getElementById('searchQ').addEventListener('input', renderFiltered);
+document.getElementById('sortBy').addEventListener('change', renderFiltered);
+
+async function loadAloj() {
+  try {
+    const {data, error} = await getSupabase().from('alojamiento').select('*').eq('activo', true).order('created_at', {ascending:false});
+    if(error) throw error;
+    allAloj = data;
+    buildFilters(data);
+    renderFiltered();
+  } catch(e) {
+    document.getElementById('alojList').innerHTML = '<div class="empty-state" style="grid-column:1/-1;"><div class="es-icon">🏠</div><h3>Próximamente</h3><p>Estamos cargando los primeros avisos de alojamiento. Mientras tanto, <a href="https://instagram.com/clasificados.veneguayos" target="_blank" style="color:var(--azul);">escribinos por Instagram</a>.</p></div>';
+  }
+}
+loadAloj();
+</script>
+</body></html>
