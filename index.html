@@ -43,7 +43,10 @@
 
 <!-- RUBROS RÁPIDOS -->
 <section style="background:var(--blanco);border-top:1px solid var(--linea);border-bottom:1px solid var(--linea);padding:0 24px;overflow-x:auto;">
-  <div style="max-width:1160px;margin:0 auto;display:flex;gap:6px;padding:12px 0;" id="rubroRow"></div>
+  <div style="max-width:1160px;margin:0 auto;padding:14px 0 4px;">
+    <div style="font-family:var(--f-archivo);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--humo);margin-bottom:10px;">Categorías</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;padding-bottom:14px;" id="rubroRow"></div>
+  </div>
 </section>
 
 <!-- EMPLEOS RECIENTES -->
@@ -88,8 +91,12 @@
         <p style="font-size:14px;color:var(--piedra);line-height:1.6;">Hacé clic en "Ver datos de contacto" y escribís directo al empleador por email o WhatsApp.</p>
       </div>
     </div>
-    <div style="margin-top:24px;">
-      <a href="publicar.html" class="btn btn-outline">¿Querés publicar un anuncio? →</a>
+    <div style="margin-top:32px;background:var(--niebla);border:1.5px solid var(--linea);border-radius:var(--r-l);padding:24px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+      <div style="text-align:left;">
+        <div style="font-family:var(--f-archivo);font-weight:800;font-size:17px;color:var(--tinta);margin-bottom:4px;">¿Querés publicar un anuncio?</div>
+        <div style="font-size:14px;color:var(--piedra);">Llegá a más de 35.000 migrantes en Uruguay.</div>
+      </div>
+      <a href="publicar.html" class="btn btn-primary" style="white-space:nowrap;">Ver planes y precios →</a>
     </div>
   </div>
 </section>
@@ -123,7 +130,7 @@
   <div style="position:absolute;inset:0;background:rgba(26,34,48,.55);"></div>
   <div style="position:relative;text-align:center;color:#fff;max-width:560px;padding:0 24px;">
     <h2 style="font-family:var(--f-archivo);font-weight:800;font-size:clamp(22px,4vw,34px);letter-spacing:-.02em;margin-bottom:12px;text-shadow:0 2px 8px rgba(0,0,0,.4);">Uruguay te espera.</h2>
-    <p style="font-size:16px;opacity:.85;margin-bottom:24px;text-shadow:0 1px 4px rgba(0,0,0,.4);">Más de 35.300 personas de la comunidad ya encontraron su oportunidad con nosotros.</p>
+    <p style="font-size:16px;opacity:.85;margin-bottom:24px;text-shadow:0 1px 4px rgba(0,0,0,.4);">Más de 35.000 personas integran nuestra comunidad, muchas han encontrado una oportunidad laboral con nosotros.</p>
     <a href="nosotros.html" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,.5);">Conocé nuestra historia →</a>
   </div>
 </section>
@@ -150,10 +157,10 @@ document.getElementById('heroFlag').innerHTML = flagBar('pill');
 
 // Rubros chips
 document.getElementById('rubroRow').innerHTML = Object.entries(RUBROS).slice(0,12).map(([id,r]) =>
-  `<button onclick="goSearch('${id}')" style="display:inline-flex;align-items:center;gap:7px;white-space:nowrap;border:1.5px solid var(--linea);background:var(--blanco);padding:7px 14px;border-radius:var(--r-pill);font-size:13px;font-weight:600;color:var(--piedra);cursor:pointer;font-family:var(--f-source);transition:all .15s;" onmouseover="this.style.borderColor='var(--azul)';this.style.color='var(--azul)'" onmouseout="this.style.borderColor='var(--linea)';this.style.color='var(--piedra)'">
-    <span style="width:15px;height:15px;color:var(--azul);">${r.svg}</span>${r.label}
+  `<button onclick="goSearch('${id}')" style="display:inline-flex;align-items:center;gap:8px;white-space:nowrap;border:1.5px solid var(--linea);background:var(--blanco);padding:9px 18px;border-radius:var(--r-pill);font-size:14px;font-weight:600;color:var(--piedra);cursor:pointer;font-family:var(--f-source);transition:all .15s;" onmouseover="this.style.borderColor='var(--azul)';this.style.color='var(--azul)'" onmouseout="this.style.borderColor='var(--linea)';this.style.color='var(--piedra)'">
+    <span style="width:17px;height:17px;color:var(--azul);">${r.svg}</span>${r.label}
   </button>`
-).join('') + `<a href="empleos.html" style="display:inline-flex;align-items:center;gap:5px;white-space:nowrap;padding:7px 14px;font-size:13px;font-weight:600;color:var(--azul);text-decoration:none;">Ver todos →</a>`;
+).join('') + `<a href="empleos.html" style="display:inline-flex;align-items:center;gap:5px;white-space:nowrap;padding:9px 18px;font-size:14px;font-weight:600;color:var(--azul);text-decoration:none;">Ver todos →</a>`;
 
 document.getElementById('heroQ').addEventListener('keydown', e => { if(e.key==='Enter') goSearch(); });
 function goSearch(cat) {
