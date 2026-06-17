@@ -5,10 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Alojamiento · Clasificados VeneGuayos</title>
 <meta name="description" content="Habitaciones y apartamentos en alquiler para venezolanos y migrantes en Uruguay.">
+<link rel="icon" href="assets/logo-mark.svg" type="image/svg+xml">
 <link rel="stylesheet" href="css/main.css">
-<script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="js/config.js"></script>
-
+<script src="js/photos.js" defer></script>
 <script src="js/app.js"></script>
 </head>
 <body>
@@ -61,8 +62,8 @@
     </div>
   </div>
   <div style="background:var(--azul);border-radius:var(--r-l);padding:22px;color:#fff;text-align:center;">
-    <h3 style="font-family:var(--f-archivo);font-weight:800;font-size:15px;margin-bottom:8px;">¿Tenés una habitación?</h3>
-    <p style="font-size:12px;opacity:.8;margin-bottom:14px;line-height:1.55;">Publicá gratis y llega a más de 35.000 migrantes.</p>
+    <h3 style="font-family:var(--f-archivo);font-weight:800;font-size:15px;margin-bottom:8px;">¿Tenés un alojamiento para alquilar?</h3>
+    <p style="font-size:12px;opacity:.8;margin-bottom:14px;line-height:1.55;">Llegá a más de 35.000 personas en Uruguay.</p>
     <div style="display:flex;flex-direction:column;gap:8px;">
       <a href="https://instagram.com/clasificados.veneguayos" target="_blank" style="display:block;background:#fff;color:var(--azul);font-weight:700;font-size:12px;padding:8px 14px;border-radius:var(--r-s);text-decoration:none;text-align:center;">📷 Instagram</a>
       <a href="mailto:clasificados.veneguayos@gmail.com?subject=Aviso de alojamiento para publicar" style="display:block;background:rgba(255,255,255,.15);color:#fff;font-weight:700;font-size:12px;padding:8px 14px;border-radius:var(--r-s);text-decoration:none;text-align:center;">✉ Email</a>
@@ -94,12 +95,13 @@
 
 <script>
 document.getElementById('hdr').innerHTML = renderHeader('alojamiento.html');
+// Apply photo when ready
+  function _applyBgPhotos() {
+    const el = document.getElementById('alojBg');
+    if(el && window.IMG_RAMBLA) el.style.backgroundImage = 'url(' + window.IMG_RAMBLA + ')';
+  }
+  if(window._photosReady) _applyBgPhotos();
 document.getElementById('ftr').innerHTML = renderFooter();
-function _applyBgPhotos() {
-  const el = document.getElementById('alojBg');
-  if(el && window.IMG_RAMBLA) el.style.backgroundImage = 'url(' + window.IMG_RAMBLA + ')';
-}
-if(window._photosReady) _applyBgPhotos();
 
 let allAloj = [];
 let activeFilters = { tipos:[], zonas:[] };
@@ -121,9 +123,13 @@ function toggleFilter(type, value, checked) {
 function setPrecio(val) { maxPrecio = val; renderFiltered(); }
 
 function buildFilters(data) {
-  const tipos = [...new Set(data.map(a=>a.tipo))];
+  const tiposDB = [...new Set(data.map(a=>a.tipo).filter(Boolean))];
+  const tiposExtra = ['Habitación','Apartamento','Residencia'].filter(t => !tiposDB.includes(t));
+  const tipos = [...tiposExtra, ...tiposDB.filter(t => !['Habitación','Apartamento','Residencia'].includes(t))];
   document.getElementById('tipoFilters').innerHTML = tipos.map(t => checkLabel(t, t, 'tipos')).join('');
-  const zonas = [...new Set(data.map(a=>a.zona))];
+  const zonasDB = [...new Set(data.map(a=>a.zona).filter(Boolean))];
+  const zonasExtra = ['Interior'].filter(z => !zonasDB.includes(z));
+  const zonas = [...zonasDB, ...zonasExtra];
   document.getElementById('zonaFilters').innerHTML = zonas.map(z => checkLabel(z, z, 'zonas')).join('');
 }
 
@@ -205,5 +211,4 @@ async function loadAloj() {
 }
 loadAloj();
 </script>
-<script src="js/photos.js"></script>
 </body></html>

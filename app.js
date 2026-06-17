@@ -13,6 +13,7 @@ const IC = `fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap=
 const RUBROS = {
   admin:          { label:'Administración y oficina',      svg:`<svg viewBox="0 0 32 32" ${IC}><rect x="6" y="4" width="20" height="24" rx="2"/><path d="M11 10h10M11 15h10M11 20h6"/></svg>` },
   ventas:         { label:'Ventas y comercial',            svg:`<svg viewBox="0 0 32 32" ${IC}><circle cx="10" cy="24" r="2"/><circle cx="22" cy="24" r="2"/><path d="M4 6h3l3 12h10l2-8H9"/></svg>` },
+  comercio:       { label:'Comercio',                      svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M4 10h24v16H4ZM4 10l4-6h16l4 6"/><path d="M16 10v16"/></svg>` },
   atencion:       { label:'Atención al cliente',           svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M8 18a8 8 0 0 1 16 0"/><path d="M6 18h3v6H6ZM23 18h3v6h-3Z"/><path d="M23 24v1a3 3 0 0 1-3 3h-3"/></svg>` },
   marketing:      { label:'Marketing y comunicación',      svg:`<svg viewBox="0 0 32 32" ${IC}><circle cx="16" cy="16" r="4"/><path d="M16 4v4M16 24v4M4 16h4M24 16h4M7.5 7.5l2.8 2.8M21.7 21.7l2.8 2.8M7.5 24.5l2.8-2.8M21.7 10.3l2.8-2.8"/></svg>` },
   tecnologia:     { label:'Tecnología / informática',      svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M12 11 7 16l5 5M20 11l5 5-5 5M18 8.5 14.5 23.5"/></svg>` },
@@ -80,12 +81,13 @@ function renderHeader(active) {
     ['nosotros.html','Nosotros'],
     ['empleos.html','Empleos'],
     ['alojamiento.html','Alojamientos'],
+    ['talentos.html','Noticias'],
     ['publicar.html','Publicar anuncio'],
   ].map(([h,l]) => `<a href="${h}" class="${active===h?'active':''}">${l}</a>`).join('');
   return `<header class="site-header">
     <div class="header-inner">
       ${logoRow('color')}
-      <nav class="site-nav">${links}<a href="admin.html" class="btn-admin">⚙ Admin</a></nav>
+      <nav class="site-nav">${links}</nav>
     </div>
   </header>`;
 }
@@ -110,13 +112,15 @@ function renderFooter() {
           <h4>Contacto</h4>
           <a href="https://instagram.com/clasificados.veneguayos" target="_blank">📷 @clasificados.veneguayos</a>
           <a href="mailto:clasificados.veneguayos@gmail.com">✉ clasificados.veneguayos@gmail.com</a>
-          <a href="https://wa.me/598XXXXXXXX" target="_blank">💬 WhatsApp</a>
         </div>
       </div>
       ${flagBar()}
       <div class="footer-bottom" style="margin-top:20px;">
         <span class="footer-copy">© 2026 Clasificados VeneGuayos. Todos los derechos reservados.</span>
         <span style="font-size:1.1rem;">🇻🇪 🇺🇾</span>
+      </div>
+      <div style="text-align:center;margin-top:12px;">
+        <a href="admin.html" style="font-size:11px;color:rgba(255,255,255,.25);text-decoration:none;">admin</a>
       </div>
     </div>
   </footer>`;
