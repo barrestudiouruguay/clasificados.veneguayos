@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Talentos · Clasificados VeneGuayos</title>
+<meta name="description" content="Recibí noticias y empleos nuevos directo en tu correo.">
+<link rel="icon" href="assets/logo-mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/main.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/app.js"></script>
+</head>
+<body>
+<div id="hdr"></div>
+
+<!-- HERO -->
+<section style="background:var(--azul);padding:56px 24px 52px;text-align:center;">
+  <div style="max-width:580px;margin:0 auto;">
+    <div class="section-eyebrow" style="color:rgba(255,255,255,.65);">Comunidad VeneGuayos</div>
+    <h1 style="font-family:var(--f-archivo);font-weight:800;font-size:clamp(26px,4.5vw,40px);color:#fff;margin-bottom:14px;line-height:1.1;">¿Querés recibir nuestras noticias y empleos nuevos?</h1>
+    <p style="font-size:16px;color:rgba(255,255,255,.8);line-height:1.65;">Dejanos tu correo y te avisamos cuando haya oportunidades que te puedan interesar.</p>
+  </div>
+</section>
+
+<!-- FORM -->
+<section style="padding:48px 24px 72px;">
+<div style="max-width:520px;margin:0 auto;">
+
+<form id="talentForm">
+  <div style="background:var(--blanco);border:1px solid var(--linea);border-radius:var(--r-l);padding:32px;box-shadow:var(--sh-soft);margin-bottom:16px;">
+
+    <div style="margin-bottom:20px;">
+      <label class="form-label">Nombre completo *</label>
+      <input class="form-input" type="text" id="nombre" placeholder="María González" required>
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <label class="form-label">Nacionalidad *</label>
+      <select class="form-select" id="nacionalidad" required onchange="toggleOtraNac()">
+        <option value="">Seleccioná…</option>
+        <option>Venezuela</option>
+        <option>Uruguay</option>
+        <option>República Dominicana</option>
+        <option>Cuba</option>
+        <option>Colombia</option>
+        <option>Argentina</option>
+        <option>Ecuador</option>
+        <option value="otra">Otra</option>
+      </select>
+      <div id="otraNac" style="display:none;margin-top:8px;">
+        <input class="form-input" type="text" id="otraNacInput" placeholder="Escribí tu país…">
+      </div>
+    </div>
+
+    <div style="margin-bottom:24px;">
+      <label class="form-label">Correo electrónico *</label>
+      <input class="form-input" type="email" id="email" placeholder="maria@email.com" required>
+    </div>
+
+    <div style="margin-bottom:8px;">
+      <label class="form-label">¿Estás buscando trabajo actualmente? *</label>
+      <div style="display:flex;gap:12px;margin-top:8px;">
+        <label style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;border:1.5px solid var(--linea);border-radius:var(--r-m);padding:12px;cursor:pointer;font-size:15px;font-weight:600;color:var(--tinta);transition:all .15s;" id="lblSi">
+          <input type="radio" name="buscando" value="si" required style="accent-color:var(--azul);"> Sí
+        </label>
+        <label style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;border:1.5px solid var(--linea);border-radius:var(--r-m);padding:12px;cursor:pointer;font-size:15px;font-weight:600;color:var(--tinta);transition:all .15s;" id="lblNo">
+          <input type="radio" name="buscando" value="no" required style="accent-color:var(--azul);"> No por ahora
+        </label>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="background:#EBF4FB;border:1px solid #C5DDEF;border-radius:var(--r-m);padding:16px 20px;margin-bottom:20px;font-size:13px;color:#2E6A9A;line-height:1.65;">
+    🔒 Tus datos no se publican en el sitio. Solo los usamos para enviarte información relevante. Podés darte de baja en cualquier momento.
+  </div>
+
+  <label style="display:flex;align-items:flex-start;gap:10px;margin-bottom:20px;cursor:pointer;">
+    <input type="checkbox" id="check1" required style="width:16px;height:16px;margin-top:2px;accent-color:var(--azul);flex-shrink:0;">
+    <span style="font-size:13px;color:var(--tinta);line-height:1.6;">Acepto recibir comunicaciones de Clasificados VeneGuayos y que mis datos sean almacenados de forma segura. *</span>
+  </label>
+
+  <button type="submit" id="submitBtn" class="btn btn-primary" style="width:100%;font-size:16px;padding:15px;justify-content:center;">
+    Suscribirme →
+  </button>
+</form>
+
+<!-- ÉXITO -->
+<div id="successMsg" style="display:none;text-align:center;padding:48px 24px;">
+  <div style="font-size:3.5rem;margin-bottom:16px;">🎉</div>
+  <h2 style="font-family:var(--f-archivo);font-weight:800;font-size:26px;color:var(--tinta);margin-bottom:12px;">¡Listo, ya estás suscripto!</h2>
+  <p style="font-size:16px;color:var(--piedra);max-width:380px;margin:0 auto 28px;line-height:1.65;">Te vamos a avisar cuando haya novedades y empleos nuevos que puedan interesarte.</p>
+  <a href="empleos.html" class="btn btn-primary">Ver empleos disponibles →</a>
+</div>
+
+</div>
+</section>
+
+<div id="ftr"></div>
+
+<script>
+document.getElementById('hdr').innerHTML = renderHeader('talentos.html');
+document.getElementById('ftr').innerHTML = renderFooter();
+
+function toggleOtraNac() {
+  const v = document.getElementById('nacionalidad').value;
+  document.getElementById('otraNac').style.display = v === 'otra' ? 'block' : 'none';
+  document.getElementById('otraNacInput').required = v === 'otra';
+}
+
+document.querySelectorAll('input[name="buscando"]').forEach(r => {
+  r.addEventListener('change', function() {
+    document.getElementById('lblSi').style.borderColor = this.value === 'si' ? 'var(--azul)' : 'var(--linea)';
+    document.getElementById('lblSi').style.background  = this.value === 'si' ? 'rgba(46,125,177,.07)' : '';
+    document.getElementById('lblNo').style.borderColor = this.value === 'no' ? 'var(--azul)' : 'var(--linea)';
+    document.getElementById('lblNo').style.background  = this.value === 'no' ? 'rgba(46,125,177,.07)' : '';
+  });
+});
+
+document.getElementById('talentForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  btn.textContent = 'Enviando…';
+  btn.disabled = true;
+
+  const nacVal = document.getElementById('nacionalidad').value;
+  const buscando = document.querySelector('input[name="buscando"]:checked')?.value;
+
+  const payload = {
+    nombre:       document.getElementById('nombre').value.trim(),
+    nacionalidad: nacVal === 'otra' ? document.getElementById('otraNacInput').value.trim() : nacVal,
+    email:        document.getElementById('email').value.trim(),
+    buscando_trabajo: buscando === 'si',
+  };
+
+  try {
+    const { error } = await getSupabase().from('talentos').insert([payload]);
+    if (error) throw error;
+    document.getElementById('talentForm').style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } catch(err) {
+    btn.textContent = 'Suscribirme →';
+    btn.disabled = false;
+    showToast('Hubo un error al enviar. Intentá de nuevo.', 'error');
+  }
+});
+</script>
+</body>
+</html>
