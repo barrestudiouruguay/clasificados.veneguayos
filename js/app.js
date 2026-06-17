@@ -81,13 +81,13 @@ function renderHeader(active) {
     ['nosotros.html','Nosotros'],
     ['empleos.html','Empleos'],
     ['alojamiento.html','Alojamientos'],
-    ['talentos.html','Talentos'],
+    ['talentos.html','Noticias'],
     ['publicar.html','Publicar anuncio'],
   ].map(([h,l]) => `<a href="${h}" class="${active===h?'active':''}">${l}</a>`).join('');
   return `<header class="site-header">
     <div class="header-inner">
       ${logoRow('color')}
-      <nav class="site-nav">${links}<a href="admin.html" class="btn-admin">⚙ Admin</a></nav>
+      <nav class="site-nav">${links}</nav>
     </div>
   </header>`;
 }
@@ -112,13 +112,15 @@ function renderFooter() {
           <h4>Contacto</h4>
           <a href="https://instagram.com/clasificados.veneguayos" target="_blank">📷 @clasificados.veneguayos</a>
           <a href="mailto:clasificados.veneguayos@gmail.com">✉ clasificados.veneguayos@gmail.com</a>
-          <a href="https://wa.me/598XXXXXXXX" target="_blank">💬 WhatsApp</a>
         </div>
       </div>
       ${flagBar()}
       <div class="footer-bottom" style="margin-top:20px;">
         <span class="footer-copy">© 2026 Clasificados VeneGuayos. Todos los derechos reservados.</span>
         <span style="font-size:1.1rem;">🇻🇪 🇺🇾</span>
+      </div>
+      <div style="text-align:center;margin-top:12px;">
+        <a href="admin.html" style="font-size:11px;color:rgba(255,255,255,.25);text-decoration:none;">admin</a>
       </div>
     </div>
   </footer>`;
