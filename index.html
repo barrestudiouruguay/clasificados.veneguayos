@@ -166,12 +166,8 @@ function goSearch(cat) {
 
 async function loadRecent() {
   try {
-    const [{data,error},{count}] = await Promise.all([
-      getSupabase().from('empleos').select('*').eq('activo',true).order('created_at',{ascending:false}).limit(6),
-      getSupabase().from('empleos').select('*',{count:'exact',head:true}).eq('activo',true).then(r=>({count:r.count}))
-    ]);
+    const {data,error} = await getSupabase().from('empleos').select('*').eq('activo',true).order('created_at',{ascending:false}).limit(6);
     if(error) throw error;
-    document.getElementById('statN').textContent = count ?? data.length;
     data.forEach(j=>cacheJob(j));
     document.getElementById('recentGrid').innerHTML = data.length
       ? data.map(j=>renderJobCard(j)).join('')
