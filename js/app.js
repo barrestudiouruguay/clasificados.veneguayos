@@ -81,6 +81,7 @@ function renderHeader(active) {
     ['nosotros.html','Nosotros'],
     ['empleos.html','Empleos'],
     ['alojamiento.html','Alojamientos'],
+    ['talentos.html','Talentos'],
     ['publicar.html','Publicar anuncio'],
   ].map(([h,l]) => `<a href="${h}" class="${active===h?'active':''}">${l}</a>`).join('');
   return `<header class="site-header">
