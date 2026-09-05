@@ -13,6 +13,7 @@ const IC = `fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap=
 const RUBROS = {
   admin:          { label:'Administración y oficina',      svg:`<svg viewBox="0 0 32 32" ${IC}><rect x="6" y="4" width="20" height="24" rx="2"/><path d="M11 10h10M11 15h10M11 20h6"/></svg>` },
   ventas:         { label:'Ventas y comercial',            svg:`<svg viewBox="0 0 32 32" ${IC}><circle cx="10" cy="24" r="2"/><circle cx="22" cy="24" r="2"/><path d="M4 6h3l3 12h10l2-8H9"/></svg>` },
+  comercio:       { label:'Comercio',                      svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M4 10h24v16H4ZM4 10l4-6h16l4 6"/><path d="M16 10v16"/></svg>` },
   atencion:       { label:'Atención al cliente',           svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M8 18a8 8 0 0 1 16 0"/><path d="M6 18h3v6H6ZM23 18h3v6h-3Z"/><path d="M23 24v1a3 3 0 0 1-3 3h-3"/></svg>` },
   marketing:      { label:'Marketing y comunicación',      svg:`<svg viewBox="0 0 32 32" ${IC}><circle cx="16" cy="16" r="4"/><path d="M16 4v4M16 24v4M4 16h4M24 16h4M7.5 7.5l2.8 2.8M21.7 21.7l2.8 2.8M7.5 24.5l2.8-2.8M21.7 10.3l2.8-2.8"/></svg>` },
   tecnologia:     { label:'Tecnología / informática',      svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M12 11 7 16l5 5M20 11l5 5-5 5M18 8.5 14.5 23.5"/></svg>` },
@@ -34,10 +35,27 @@ const RUBROS = {
   oficios:        { label:'Oficios',                       svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M8 24l14-14M18 6l8 8-4 4-8-8Z"/><path d="M6 22l4 4-4 2Z"/></svg>` },
   domestico:      { label:'Trabajo doméstico',             svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M6 16L16 6l10 10v12H6Z"/><path d="M13 28v-8h6v8"/></svg>` },
   agro:           { label:'Agricultura / agro',            svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M16 28V14"/><path d="M16 14C16 8 8 6 6 10c4 0 6 2 10 4"/><path d="M16 14c0-6 8-8 10-4-4 0-6 2-10 4"/></svg>` },
+  estetica:       { label:'Estética',                       svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M16 6c0 0-8 4-8 12a8 8 0 0 0 16 0c0-8-8-12-8-12z"/><path d="M16 14v8M13 17l3-3 3 3"/></svg>` },
+  cuidados:       { label:'Cuidados y asistencia',         svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M16 27s-11-6.5-11-14a7 7 0 0 1 11-5.74A7 7 0 0 1 27 13c0 7.5-11 14-11 14z"/></svg>` },
+  eventos:        { label:'Eventos y entretenimiento',     svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M8 4v4M16 4v4M24 4v4"/><rect x="4" y="8" width="24" height="20" rx="2"/><path d="M4 14h24"/><circle cx="12" cy="21" r="2"/><circle cx="20" cy="21" r="2"/></svg>` },
+  costura:        { label:'Costura y confección',          svg:`<svg viewBox="0 0 32 32" ${IC}><circle cx="10" cy="10" r="3"/><path d="M10 13v13M10 16l12-8"/><circle cx="22" cy="8" r="2"/></svg>` },
+  ninos:          { label:'Cuidado de niños',              svg:`<svg viewBox="0 0 32 32" ${IC}><circle cx="16" cy="9" r="4"/><path d="M10 20c0-4 2.5-7 6-7s6 3 6 7"/><path d="M8 28c0-3 1.8-5 4-5h8c2.2 0 4 2 4 5"/></svg>` },
+  mudanzas:       { label:'Mudanzas y fletes',             svg:`<svg viewBox="0 0 32 32" ${IC}><rect x="2" y="12" width="20" height="14" rx="2"/><path d="M22 16h4l4 4v6h-8"/><circle cx="8" cy="26" r="2"/><circle cx="20" cy="26" r="2"/><circle cx="28" cy="26" r="2"/><path d="M2 12V8l8-4h12v8"/></svg>` },
+  fotografia:     { label:'Fotografía y video',            svg:`<svg viewBox="0 0 32 32" ${IC}><rect x="2" y="8" width="22" height="18" rx="2"/><circle cx="13" cy="17" r="5"/><path d="M24 14l6-3v12l-6-3"/><path d="M8 8l2-4h6l2 4"/></svg>` },
+  clases:         { label:'Clases y tutorías',             svg:`<svg viewBox="0 0 32 32" ${IC}><rect x="4" y="4" width="24" height="18" rx="2"/><path d="M4 22h24"/><path d="M12 28h8M16 22v6"/><path d="M10 12h12M10 15h8"/></svg>` },
+  electricidad:   { label:'Electricidad y plomería',       svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M18 4l-6 12h8l-6 12"/></svg>` },
+  mecanica:       { label:'Mecánica y automotriz',         svg:`<svg viewBox="0 0 32 32" ${IC}><circle cx="16" cy="16" r="5"/><path d="M16 4v4M16 24v4M4 16h4M24 16h4M7.5 7.5l2.8 2.8M21.7 21.7l2.8 2.8M7.5 24.5l2.8-2.8M21.7 10.3l2.8-2.8"/></svg>` },
+  jardineria:     { label:'Jardinería y paisajismo',       svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M16 28V16"/><path d="M16 16C16 10 8 8 6 12c4 0 7 2 10 4"/><path d="M16 20c0-4 6-7 10-4-3 1-6 3-10 4"/></svg>` },
+  deportes:       { label:'Deporte y fitness',             svg:`<svg viewBox="0 0 32 32" ${IC}><circle cx="16" cy="16" r="11"/><path d="M9 9l14 14M9 23l14-14"/></svg>` },
+  arte:           { label:'Arte y diseño',                 svg:`<svg viewBox="0 0 32 32" ${IC}><circle cx="16" cy="16" r="11"/><path d="M11 16c2-4 8-4 10 0s-8 8-10 0z"/></svg>` },
+  callcenter:     { label:'Call center / telemarketing',   svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M6 18a10 10 0 0 1 20 0"/><path d="M4 18h4v6H4ZM24 18h4v6h-4Z"/><path d="M28 24v1a4 4 0 0 1-4 4"/></svg>` },
+  veterinaria:    { label:'Veterinaria y mascotas',        svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M14 6c0-2-3-2-3 0s3 4 5 6c2-2 5-4 5-6s-3-2-3 0"/><circle cx="8" cy="10" r="2"/><circle cx="24" cy="10" r="2"/><path d="M16 12c-5 0-9 4-9 9 0 3 4 5 9 5s9-2 9-5c0-5-4-9-9-9z"/></svg>` },
+  idiomas:        { label:'Idiomas y traducción',          svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M4 8h12M10 8v-3M7 14c1-2 4-6 6-6M4 14c1-2 7 0 9 0"/><path d="M16 16l4-8 4 8M17.5 23h5"/><path d="M20 28v-12"/></svg>` },
   otros:          { label:'Otros empleos',                 svg:`<svg viewBox="0 0 32 32" ${IC}><circle cx="10" cy="16" r="2"/><circle cx="16" cy="16" r="2"/><circle cx="22" cy="16" r="2"/></svg>` },
 };
 
 function catLabel(id) { return (RUBROS[id]||{label:id}).label; }
+function catTone(id) { return 'azul'; }
 
 function rubroChip(id) {
   const r = RUBROS[id] || { label: id, svg:'' };
@@ -53,13 +71,13 @@ const IconPin   = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" s
 const IconClock = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>`;
 const IconWA    = `<svg width="16" height="16" viewBox="0 0 24 24" fill="#1FA855"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>`;
 
-const LOGO_SVG_COLOR = `<svg viewBox="0 0 120 96" xmlns="http://www.w3.org/2000/svg">
-  <text x="2" y="72" font-family="Arial Black,sans-serif" font-weight="900" font-size="80" fill="#2E7DB1">C</text>
-  <text x="52" y="72" font-family="Arial Black,sans-serif" font-weight="900" font-size="80" fill="#8E1F3F">V</text>
-  <circle cx="84" cy="18" r="8" fill="#E0A53A"/>
-  <polygon points="84,4 86,14 96,14 88,20 91,30 84,24 77,30 80,20 72,14 82,14" fill="#E0A53A"/>
-  <polygon points="84,32 85.5,37 90,37 86.5,39.5 88,44 84,41.5 80,44 81.5,39.5 78,37 82.5,37" fill="#2E7DB1"/>
-  <polygon points="84,46 85.5,51 90,51 86.5,53.5 88,58 84,55.5 80,58 81.5,53.5 78,51 82.5,51" fill="#8E1F3F"/>
+const LOGO_SVG_COLOR = `<svg viewBox="0 0 540 430" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <path d="M 335.2,344.3 A 170 170 0 1 1 335.2,125.7 L 284.7,168.2 A 104 104 0 1 0 284.7,301.8 Z" fill="#2E7DB1"/>
+  <path d="M 248.0,70.0 L 316.0,70.0 L 358.0,232.0 L 400.0,70.0 L 468.0,70.0 L 358.0,398.0 Z" fill="#8E1F3F"/>
+  <path d="M 356.0,77.2 L 358.0,63.0 L 360.0,77.2 Z M 362.7,77.9 L 371.5,66.6 L 366.2,79.9 Z M 368.1,81.8 L 381.4,76.5 L 370.1,85.3 Z M 370.8,88.0 L 385.0,90.0 L 370.8,92.0 Z M 370.1,94.7 L 381.4,103.5 L 368.1,98.2 Z M 366.2,100.1 L 371.5,113.4 L 362.7,102.1 Z M 360.0,102.8 L 358.0,117.0 L 356.0,102.8 Z M 353.3,102.1 L 344.5,113.4 L 349.8,100.1 Z M 347.9,98.2 L 334.6,103.5 L 345.9,94.7 Z M 345.2,92.0 L 331.0,90.0 L 345.2,88.0 Z M 345.9,85.3 L 334.6,76.5 L 347.9,81.8 Z M 349.8,79.9 L 344.5,66.6 L 353.3,77.9 Z" fill="#E0A53A"/>
+  <path d="M 371.0,90.0 A 13 13 0 1 0 345.0,90.0 A 13 13 0 1 0 371.0,90.0 Z" fill="#E0A53A"/>
+  <path d="M 358.0,119.0 L 362.5,131.9 L 376.1,132.1 L 365.2,140.3 L 369.2,153.4 L 358.0,145.6 L 346.8,153.4 L 350.8,140.3 L 339.9,132.1 L 353.5,131.9 Z" fill="#2E7DB1"/>
+  <path d="M 358.0,161.0 L 362.5,173.9 L 376.1,174.1 L 365.2,182.3 L 369.2,195.4 L 358.0,187.6 L 346.8,195.4 L 350.8,182.3 L 339.9,174.1 L 353.5,173.9 Z" fill="#8E1F3F"/>
 </svg>`;
 
 const LOGO_SVG_WHITE = LOGO_SVG_COLOR.replace(/#2E7DB1/g,'#fff').replace(/#8E1F3F/g,'#fff').replace(/#E0A53A/g,'#E0A53A');
@@ -78,12 +96,13 @@ function renderHeader(active) {
     ['nosotros.html','Nosotros'],
     ['empleos.html','Empleos'],
     ['alojamiento.html','Alojamientos'],
+    ['talentos.html','Noticias'],
     ['publicar.html','Publicar anuncio'],
   ].map(([h,l]) => `<a href="${h}" class="${active===h?'active':''}">${l}</a>`).join('');
   return `<header class="site-header">
     <div class="header-inner">
       ${logoRow('color')}
-      <nav class="site-nav">${links}<a href="admin.html" class="btn-admin">⚙ Admin</a></nav>
+      <nav class="site-nav">${links}</nav>
     </div>
   </header>`;
 }
@@ -108,13 +127,15 @@ function renderFooter() {
           <h4>Contacto</h4>
           <a href="https://instagram.com/clasificados.veneguayos" target="_blank">📷 @clasificados.veneguayos</a>
           <a href="mailto:clasificados.veneguayos@gmail.com">✉ clasificados.veneguayos@gmail.com</a>
-          <a href="https://wa.me/598XXXXXXXX" target="_blank">💬 WhatsApp</a>
         </div>
       </div>
       ${flagBar()}
       <div class="footer-bottom" style="margin-top:20px;">
         <span class="footer-copy">© 2026 Clasificados VeneGuayos. Todos los derechos reservados.</span>
         <span style="font-size:1.1rem;">🇻🇪 🇺🇾</span>
+      </div>
+      <div style="text-align:center;margin-top:12px;">
+        <a href="admin.html" style="font-size:11px;color:rgba(255,255,255,.25);text-decoration:none;">admin</a>
       </div>
     </div>
   </footer>`;
