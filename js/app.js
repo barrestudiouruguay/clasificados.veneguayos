@@ -1,5 +1,5 @@
 // ============================================================
-// CLASIFICADOS VENEGUAYOS — app.js v4
+// CLASIFICADOS VENEGUAYOS ‚Äî app.js v4
 // ============================================================
 
 let _sb = null;
@@ -8,49 +8,49 @@ function getSupabase() {
   return _sb;
 }
 
-// ── Rubros ───────────────────────────────────────────────────
+// ‚îÄ‚îÄ Rubros ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
 const IC = `fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"`;
 const RUBROS = {
-  admin:          { label:'Administración y oficina',      svg:`<svg viewBox="0 0 32 32" ${IC}><rect x="6" y="4" width="20" height="24" rx="2"/><path d="M11 10h10M11 15h10M11 20h6"/></svg>` },
+  admin:          { label:'Administraci√≥n y oficina',      svg:`<svg viewBox="0 0 32 32" ${IC}><rect x="6" y="4" width="20" height="24" rx="2"/><path d="M11 10h10M11 15h10M11 20h6"/></svg>` },
   ventas:         { label:'Ventas y comercial',            svg:`<svg viewBox="0 0 32 32" ${IC}><circle cx="10" cy="24" r="2"/><circle cx="22" cy="24" r="2"/><path d="M4 6h3l3 12h10l2-8H9"/></svg>` },
   comercio:       { label:'Comercio',                      svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M4 10h24v16H4ZM4 10l4-6h16l4 6"/><path d="M16 10v16"/></svg>` },
-  atencion:       { label:'Atención al cliente',           svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M8 18a8 8 0 0 1 16 0"/><path d="M6 18h3v6H6ZM23 18h3v6h-3Z"/><path d="M23 24v1a3 3 0 0 1-3 3h-3"/></svg>` },
-  marketing:      { label:'Marketing y comunicación',      svg:`<svg viewBox="0 0 32 32" ${IC}><circle cx="16" cy="16" r="4"/><path d="M16 4v4M16 24v4M4 16h4M24 16h4M7.5 7.5l2.8 2.8M21.7 21.7l2.8 2.8M7.5 24.5l2.8-2.8M21.7 10.3l2.8-2.8"/></svg>` },
-  tecnologia:     { label:'Tecnología / informática',      svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M12 11 7 16l5 5M20 11l5 5-5 5M18 8.5 14.5 23.5"/></svg>` },
+  atencion:       { label:'Atenci√≥n al cliente',           svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M8 18a8 8 0 0 1 16 0"/><path d="M6 18h3v6H6ZM23 18h3v6h-3Z"/><path d="M23 24v1a3 3 0 0 1-3 3h-3"/></svg>` },
+  marketing:      { label:'Marketing y comunicaci√≥n',      svg:`<svg viewBox="0 0 32 32" ${IC}><circle cx="16" cy="16" r="4"/><path d="M16 4v4M16 24v4M4 16h4M24 16h4M7.5 7.5l2.8 2.8M21.7 21.7l2.8 2.8M7.5 24.5l2.8-2.8M21.7 10.3l2.8-2.8"/></svg>` },
+  tecnologia:     { label:'Tecnolog√≠a / inform√°tica',      svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M12 11 7 16l5 5M20 11l5 5-5 5M18 8.5 14.5 23.5"/></svg>` },
   contabilidad:   { label:'Contabilidad y finanzas',       svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M6 6h20v20H6Z"/><path d="M10 16h4M10 20h4M18 10v12"/></svg>` },
   rrhh:           { label:'Recursos humanos',              svg:`<svg viewBox="0 0 32 32" ${IC}><circle cx="16" cy="10" r="4"/><path d="M8 26a8 8 0 0 1 16 0"/></svg>` },
   legal:          { label:'Legal',                         svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M16 4v24M8 12l8-8 8 8"/><path d="M10 20h12"/></svg>` },
-  ingenieria:     { label:'Ingeniería y arquitectura',     svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M6 26L16 6l10 20"/><path d="M10 18h12"/></svg>` },
-  construccion:   { label:'Construcción',                  svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M7 21a9 9 0 0 1 18 0"/><path d="M5 21h22"/></svg>` },
-  industria:      { label:'Industria y producción',        svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M4 26V14l8-6v6l8-6v6l8-6v12"/><path d="M4 26h24"/></svg>` },
-  logistica:      { label:'Logística y transporte',        svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M16 5 27 10.5V21.5L16 27 5 21.5V10.5Z"/><path d="M5 10.5 16 16l11-5.5M16 16v11"/></svg>` },
-  cadeteria:      { label:'Cadetería / delivery',          svg:`<svg viewBox="0 0 32 32" ${IC}><circle cx="10" cy="24" r="2"/><circle cx="24" cy="24" r="2"/><path d="M4 10h14v10H4ZM18 14h6l4 4v6h-4"/></svg>` },
-  gastronomia:    { label:'Gastronomía',                   svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M9 6v6a3 3 0 0 0 6 0V6M12 6v20M22 6c3 1 3 8 0 9v11"/></svg>` },
-  hoteleria:      { label:'Hotelería y turismo',           svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M6 26V10l10-6 10 6v16"/><path d="M13 26v-6h6v6"/><path d="M10 14h2M20 14h2M10 18h2M20 18h2"/></svg>` },
+  ingenieria:     { label:'Ingenier√≠a y arquitectura',     svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M6 26L16 6l10 20"/><path d="M10 18h12"/></svg>` },
+  construccion:   { label:'Construcci√≥n',                  svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M7 21a9 9 0 0 1 18 0"/><path d="M5 21h22"/></svg>` },
+  industria:      { label:'Industria y producci√≥n',        svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M4 26V14l8-6v6l8-6v6l8-6v12"/><path d="M4 26h24"/></svg>` },
+  logistica:      { label:'Log√≠stica y transporte',        svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M16 5 27 10.5V21.5L16 27 5 21.5V10.5Z"/><path d="M5 10.5 16 16l11-5.5M16 16v11"/></svg>` },
+  cadeteria:      { label:'Cadeter√≠a / delivery',          svg:`<svg viewBox="0 0 32 32" ${IC}><circle cx="10" cy="24" r="2"/><circle cx="24" cy="24" r="2"/><path d="M4 10h14v10H4ZM18 14h6l4 4v6h-4"/></svg>` },
+  gastronomia:    { label:'Gastronom√≠a',                   svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M9 6v6a3 3 0 0 0 6 0V6M12 6v20M22 6c3 1 3 8 0 9v11"/></svg>` },
+  hoteleria:      { label:'Hoteler√≠a y turismo',           svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M6 26V10l10-6 10 6v16"/><path d="M13 26v-6h6v6"/><path d="M10 14h2M20 14h2M10 18h2M20 18h2"/></svg>` },
   salud:          { label:'Salud',                         svg:`<svg viewBox="0 0 32 32" ${IC}><circle cx="16" cy="16" r="11"/><path d="M16 10v12M10 16h12"/></svg>` },
-  educacion:      { label:'Educación',                     svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M16 6 4 13l12 7 12-7Z"/><path d="M4 13v8M20 15v7a8 4 0 0 1-8 0v-7"/></svg>` },
+  educacion:      { label:'Educaci√≥n',                     svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M16 6 4 13l12 7 12-7Z"/><path d="M4 13v8M20 15v7a8 4 0 0 1-8 0v-7"/></svg>` },
   limpieza:       { label:'Limpieza y mantenimiento',      svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M10 13h12l-1.6 13H11.6Z"/><path d="M10 13a6 3 0 0 1 12 0"/></svg>` },
   seguridad:      { label:'Seguridad',                     svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M16 4l10 4v8c0 6-4 10-10 12C10 26 6 22 6 16V8Z"/></svg>` },
   servicios:      { label:'Servicios generales',           svg:`<svg viewBox="0 0 32 32" ${IC}><circle cx="16" cy="16" r="3"/><path d="M16 4v4M16 24v4M4 16h4M24 16h4M7.8 7.8l2.8 2.8M21.4 21.4l2.8 2.8M7.8 24.2l2.8-2.8M21.4 10.6l2.8-2.8"/></svg>` },
   oficios:        { label:'Oficios',                       svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M8 24l14-14M18 6l8 8-4 4-8-8Z"/><path d="M6 22l4 4-4 2Z"/></svg>` },
-  domestico:      { label:'Trabajo doméstico',             svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M6 16L16 6l10 10v12H6Z"/><path d="M13 28v-8h6v8"/></svg>` },
+  domestico:      { label:'Trabajo dom√©stico',             svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M6 16L16 6l10 10v12H6Z"/><path d="M13 28v-8h6v8"/></svg>` },
   agro:           { label:'Agricultura / agro',            svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M16 28V14"/><path d="M16 14C16 8 8 6 6 10c4 0 6 2 10 4"/><path d="M16 14c0-6 8-8 10-4-4 0-6 2-10 4"/></svg>` },
-  estetica:       { label:'Estética',                       svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M16 6c0 0-8 4-8 12a8 8 0 0 0 16 0c0-8-8-12-8-12z"/><path d="M16 14v8M13 17l3-3 3 3"/></svg>` },
+  estetica:       { label:'Est√©tica',                       svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M16 6c0 0-8 4-8 12a8 8 0 0 0 16 0c0-8-8-12-8-12z"/><path d="M16 14v8M13 17l3-3 3 3"/></svg>` },
   cuidados:       { label:'Cuidados y asistencia',         svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M16 27s-11-6.5-11-14a7 7 0 0 1 11-5.74A7 7 0 0 1 27 13c0 7.5-11 14-11 14z"/></svg>` },
   eventos:        { label:'Eventos y entretenimiento',     svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M8 4v4M16 4v4M24 4v4"/><rect x="4" y="8" width="24" height="20" rx="2"/><path d="M4 14h24"/><circle cx="12" cy="21" r="2"/><circle cx="20" cy="21" r="2"/></svg>` },
-  costura:        { label:'Costura y confección',          svg:`<svg viewBox="0 0 32 32" ${IC}><circle cx="10" cy="10" r="3"/><path d="M10 13v13M10 16l12-8"/><circle cx="22" cy="8" r="2"/></svg>` },
-  ninos:          { label:'Cuidado de niños',              svg:`<svg viewBox="0 0 32 32" ${IC}><circle cx="16" cy="9" r="4"/><path d="M10 20c0-4 2.5-7 6-7s6 3 6 7"/><path d="M8 28c0-3 1.8-5 4-5h8c2.2 0 4 2 4 5"/></svg>` },
+  costura:        { label:'Costura y confecci√≥n',          svg:`<svg viewBox="0 0 32 32" ${IC}><circle cx="10" cy="10" r="3"/><path d="M10 13v13M10 16l12-8"/><circle cx="22" cy="8" r="2"/></svg>` },
+  ninos:          { label:'Cuidado de ni√±os',              svg:`<svg viewBox="0 0 32 32" ${IC}><circle cx="16" cy="9" r="4"/><path d="M10 20c0-4 2.5-7 6-7s6 3 6 7"/><path d="M8 28c0-3 1.8-5 4-5h8c2.2 0 4 2 4 5"/></svg>` },
   mudanzas:       { label:'Mudanzas y fletes',             svg:`<svg viewBox="0 0 32 32" ${IC}><rect x="2" y="12" width="20" height="14" rx="2"/><path d="M22 16h4l4 4v6h-8"/><circle cx="8" cy="26" r="2"/><circle cx="20" cy="26" r="2"/><circle cx="28" cy="26" r="2"/><path d="M2 12V8l8-4h12v8"/></svg>` },
-  fotografia:     { label:'Fotografía y video',            svg:`<svg viewBox="0 0 32 32" ${IC}><rect x="2" y="8" width="22" height="18" rx="2"/><circle cx="13" cy="17" r="5"/><path d="M24 14l6-3v12l-6-3"/><path d="M8 8l2-4h6l2 4"/></svg>` },
-  clases:         { label:'Clases y tutorías',             svg:`<svg viewBox="0 0 32 32" ${IC}><rect x="4" y="4" width="24" height="18" rx="2"/><path d="M4 22h24"/><path d="M12 28h8M16 22v6"/><path d="M10 12h12M10 15h8"/></svg>` },
-  electricidad:   { label:'Electricidad y plomería',       svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M18 4l-6 12h8l-6 12"/></svg>` },
-  mecanica:       { label:'Mecánica y automotriz',         svg:`<svg viewBox="0 0 32 32" ${IC}><circle cx="16" cy="16" r="5"/><path d="M16 4v4M16 24v4M4 16h4M24 16h4M7.5 7.5l2.8 2.8M21.7 21.7l2.8 2.8M7.5 24.5l2.8-2.8M21.7 10.3l2.8-2.8"/></svg>` },
-  jardineria:     { label:'Jardinería y paisajismo',       svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M16 28V16"/><path d="M16 16C16 10 8 8 6 12c4 0 7 2 10 4"/><path d="M16 20c0-4 6-7 10-4-3 1-6 3-10 4"/></svg>` },
+  fotografia:     { label:'Fotograf√≠a y video',            svg:`<svg viewBox="0 0 32 32" ${IC}><rect x="2" y="8" width="22" height="18" rx="2"/><circle cx="13" cy="17" r="5"/><path d="M24 14l6-3v12l-6-3"/><path d="M8 8l2-4h6l2 4"/></svg>` },
+  clases:         { label:'Clases y tutor√≠as',             svg:`<svg viewBox="0 0 32 32" ${IC}><rect x="4" y="4" width="24" height="18" rx="2"/><path d="M4 22h24"/><path d="M12 28h8M16 22v6"/><path d="M10 12h12M10 15h8"/></svg>` },
+  electricidad:   { label:'Electricidad y plomer√≠a',       svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M18 4l-6 12h8l-6 12"/></svg>` },
+  mecanica:       { label:'Mec√°nica y automotriz',         svg:`<svg viewBox="0 0 32 32" ${IC}><circle cx="16" cy="16" r="5"/><path d="M16 4v4M16 24v4M4 16h4M24 16h4M7.5 7.5l2.8 2.8M21.7 21.7l2.8 2.8M7.5 24.5l2.8-2.8M21.7 10.3l2.8-2.8"/></svg>` },
+  jardineria:     { label:'Jardiner√≠a y paisajismo',       svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M16 28V16"/><path d="M16 16C16 10 8 8 6 12c4 0 7 2 10 4"/><path d="M16 20c0-4 6-7 10-4-3 1-6 3-10 4"/></svg>` },
   deportes:       { label:'Deporte y fitness',             svg:`<svg viewBox="0 0 32 32" ${IC}><circle cx="16" cy="16" r="11"/><path d="M9 9l14 14M9 23l14-14"/></svg>` },
-  arte:           { label:'Arte y diseño',                 svg:`<svg viewBox="0 0 32 32" ${IC}><circle cx="16" cy="16" r="11"/><path d="M11 16c2-4 8-4 10 0s-8 8-10 0z"/></svg>` },
+  arte:           { label:'Arte y dise√±o',                 svg:`<svg viewBox="0 0 32 32" ${IC}><circle cx="16" cy="16" r="11"/><path d="M11 16c2-4 8-4 10 0s-8 8-10 0z"/></svg>` },
   callcenter:     { label:'Call center / telemarketing',   svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M6 18a10 10 0 0 1 20 0"/><path d="M4 18h4v6H4ZM24 18h4v6h-4Z"/><path d="M28 24v1a4 4 0 0 1-4 4"/></svg>` },
   veterinaria:    { label:'Veterinaria y mascotas',        svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M14 6c0-2-3-2-3 0s3 4 5 6c2-2 5-4 5-6s-3-2-3 0"/><circle cx="8" cy="10" r="2"/><circle cx="24" cy="10" r="2"/><path d="M16 12c-5 0-9 4-9 9 0 3 4 5 9 5s9-2 9-5c0-5-4-9-9-9z"/></svg>` },
-  idiomas:        { label:'Idiomas y traducción',          svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M4 8h12M10 8v-3M7 14c1-2 4-6 6-6M4 14c1-2 7 0 9 0"/><path d="M16 16l4-8 4 8M17.5 23h5"/><path d="M20 28v-12"/></svg>` },
+  idiomas:        { label:'Idiomas y traducci√≥n',          svg:`<svg viewBox="0 0 32 32" ${IC}><path d="M4 8h12M10 8v-3M7 14c1-2 4-6 6-6M4 14c1-2 7 0 9 0"/><path d="M16 16l4-8 4 8M17.5 23h5"/><path d="M20 28v-12"/></svg>` },
   otros:          { label:'Otros empleos',                 svg:`<svg viewBox="0 0 32 32" ${IC}><circle cx="10" cy="16" r="2"/><circle cx="16" cy="16" r="2"/><circle cx="22" cy="16" r="2"/></svg>` },
 };
 
@@ -64,7 +64,7 @@ function rubroChip(id) {
   </span>`;
 }
 
-// ── SVG Icons ─────────────────────────────────────────────────
+// ‚îÄ‚îÄ SVG Icons ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
 const IconGlobe = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/></svg>`;
 const IconMail  = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>`;
 const IconPin   = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>`;
@@ -89,7 +89,7 @@ const logoRow = (v='color') => `<a class="logo-row" href="index.html">
   <div class="logo-words"><div class="w1">CLASIFICADOS</div><div class="w2">VENEGUAYOS</div></div>
 </a>`;
 
-// ── Nav ───────────────────────────────────────────────────────
+// ‚îÄ‚îÄ Nav ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
 function renderHeader(active) {
   const links = [
     ['index.html','Inicio'],
@@ -125,14 +125,14 @@ function renderFooter() {
         </div>
         <div class="footer-col">
           <h4>Contacto</h4>
-          <a href="https://instagram.com/clasificados.veneguayos" target="_blank">📷 @clasificados.veneguayos</a>
-          <a href="mailto:clasificados.veneguayos@gmail.com">✉ clasificados.veneguayos@gmail.com</a>
+          <a href="https://instagram.com/clasificados.veneguayos" target="_blank">üì∑ @clasificados.veneguayos</a>
+          <a href="mailto:clasificados.veneguayos@gmail.com">‚úâ clasificados.veneguayos@gmail.com</a>
         </div>
       </div>
       ${flagBar()}
       <div class="footer-bottom" style="margin-top:20px;">
-        <span class="footer-copy">© 2026 Clasificados VeneGuayos. Todos los derechos reservados.</span>
-        <span style="font-size:1.1rem;">🇻🇪 🇺🇾</span>
+        <span class="footer-copy">¬© 2026 Clasificados VeneGuayos. Todos los derechos reservados.</span>
+        <span style="font-size:1.1rem;">üáªüá™ üá∫üáæ</span>
       </div>
       <div style="text-align:center;margin-top:12px;">
         <a href="admin.html" style="font-size:11px;color:rgba(255,255,255,.25);text-decoration:none;">admin</a>
@@ -141,18 +141,18 @@ function renderFooter() {
   </footer>`;
 }
 
-// ── Time ──────────────────────────────────────────────────────
+// ‚îÄ‚îÄ Time ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
 function timeAgo(d) {
   const diff = Math.floor((new Date() - new Date(d)) / 1000);
   if (diff < 3600)   return 'Hace ' + Math.floor(diff/60) + ' min';
   if (diff < 86400)  return 'Hace ' + Math.floor(diff/3600) + ' h';
   if (diff < 172800) return 'Ayer';
-  if (diff < 604800) return 'Hace ' + Math.floor(diff/86400) + ' días';
+  if (diff < 604800) return 'Hace ' + Math.floor(diff/86400) + ' d√≠as';
   return new Date(d).toLocaleDateString('es-UY',{day:'numeric',month:'short'});
 }
 function isNew(d) { return (new Date() - new Date(d)) < 72*3600*1000; }
 
-// ── Contact reveal ────────────────────────────────────────────
+// ‚îÄ‚îÄ Contact reveal ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
 const _jobsCache = {};
 function cacheJob(j) { _jobsCache[j.id] = j; }
 
@@ -160,7 +160,7 @@ function buildContactBlock(job) {
   const waMsg = encodeURIComponent(`Hola, vi el aviso de ${job.titulo} en Clasificados VeneGuayos y me interesa postularme.`);
   const waNum = job.contacto_wa ? job.contacto_wa.replace(/\D/g,'') : '';
   const emailLink = job.contacto_email
-    ? `<a href="mailto:${job.contacto_email}?subject=Postulación: ${job.titulo}&body=Hola, vi tu aviso en Clasificados VeneGuayos y me interesa el puesto de ${job.titulo}." class="contact-link">${IconMail} ${job.contacto_email}</a>`
+    ? `<a href="mailto:${job.contacto_email}?subject=Postulaci√≥n: ${job.titulo}&body=Hola, vi tu aviso en Clasificados VeneGuayos y me interesa el puesto de ${job.titulo}." class="contact-link">${IconMail} ${job.contacto_email}</a>`
     : '';
   const waLink = waNum
     ? `<a href="https://wa.me/598${waNum}?text=${waMsg}" target="_blank" class="contact-link">${IconWA} ${job.contacto_wa}</a>`
@@ -168,7 +168,7 @@ function buildContactBlock(job) {
   return `<div class="contact-block contact-anim">
     <div class="contact-block-head">Datos de contacto del empleador</div>
     <div class="contact-block-body">${emailLink}${waLink}</div>
-    <div class="contact-block-foot">Información recibida del empleador. Para mayores detalles, consultar directamente.</div>
+    <div class="contact-block-foot">Informaci√≥n recibida del empleador. Para mayores detalles, consultar directamente.</div>
   </div>`;
 }
 
@@ -178,7 +178,7 @@ function revealContact(uid, jobId) {
   document.getElementById('wrap_' + uid).innerHTML = buildContactBlock(job);
 }
 
-// ── Job card ──────────────────────────────────────────────────
+// ‚îÄ‚îÄ Job card ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
 function renderJobCard(job) {
   const uid = 'card_' + job.id;
   const hasContact = job.contacto_email || job.contacto_wa;
@@ -211,7 +211,7 @@ function renderJobCard(job) {
   </div>`;
 }
 
-// ── Toast ─────────────────────────────────────────────────────
+// ‚îÄ‚îÄ Toast ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
 function showToast(msg, type='success') {
   let t = document.getElementById('_toast');
   if (!t) { t=document.createElement('div'); t.id='_toast'; t.className='toast'; document.body.appendChild(t); }
@@ -220,7 +220,7 @@ function showToast(msg, type='success') {
   setTimeout(()=>t.classList.remove('show'),3200);
 }
 
-// ── Admin auth ────────────────────────────────────────────────
+// ‚îÄ‚îÄ Admin auth ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
 function checkAdmin()  { return sessionStorage.getItem('vg_admin')==='ok'; }
 function loginAdmin(p) { if(p===ADMIN_PASSWORD){sessionStorage.setItem('vg_admin','ok');return true;} return false; }
 function logoutAdmin() { sessionStorage.removeItem('vg_admin'); location.reload(); }
