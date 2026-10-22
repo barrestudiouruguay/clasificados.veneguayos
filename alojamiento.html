@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alojamiento · Clasificados VeneGuayos</title>
+<title>Alojamiento ¬∑ Clasificados VeneGuayos</title>
 <meta name="description" content="Habitaciones y apartamentos en alquiler para venezolanos y migrantes en Uruguay.">
 <link rel="icon" href="assets/logo-mark.svg" type="image/svg+xml">
 <link rel="stylesheet" href="css/main.css">
@@ -42,7 +42,7 @@
     <div id="zonaFilters" style="display:flex;flex-direction:column;gap:7px;"></div>
   </div>
   <div style="background:var(--blanco);border:1px solid var(--linea);border-radius:var(--r-l);padding:20px;box-shadow:var(--sh-soft);">
-    <div style="font-family:var(--f-archivo);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--humo);margin-bottom:12px;">Precio máximo</div>
+    <div style="font-family:var(--f-archivo);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--humo);margin-bottom:12px;">Precio m√°ximo</div>
     <div id="precioFilters" style="display:flex;flex-direction:column;gap:7px;">
       <label style="display:flex;align-items:center;gap:9px;font-size:13px;cursor:pointer;font-family:var(--f-source);color:var(--tinta);">
         <input type="radio" name="precio" value="all" checked onchange="setPrecio('')" style="accent-color:var(--azul);"> Cualquier precio
@@ -62,11 +62,11 @@
     </div>
   </div>
   <div style="background:var(--azul);border-radius:var(--r-l);padding:22px;color:#fff;text-align:center;">
-    <h3 style="font-family:var(--f-archivo);font-weight:800;font-size:15px;margin-bottom:8px;">¿Tenés un alojamiento para alquilar?</h3>
-    <p style="font-size:12px;opacity:.8;margin-bottom:14px;line-height:1.55;">Llegá a más de 35.000 personas en Uruguay.</p>
+    <h3 style="font-family:var(--f-archivo);font-weight:800;font-size:15px;margin-bottom:8px;">¬øTen√©s un alojamiento para alquilar?</h3>
+    <p style="font-size:12px;opacity:.8;margin-bottom:14px;line-height:1.55;">Lleg√° a m√°s de 35.000 personas en Uruguay.</p>
     <div style="display:flex;flex-direction:column;gap:8px;">
-      <a href="https://instagram.com/clasificados.veneguayos" target="_blank" style="display:block;background:#fff;color:var(--azul);font-weight:700;font-size:12px;padding:8px 14px;border-radius:var(--r-s);text-decoration:none;text-align:center;">📷 Instagram</a>
-      <a href="mailto:clasificados.veneguayos@gmail.com?subject=Aviso de alojamiento para publicar" style="display:block;background:rgba(255,255,255,.15);color:#fff;font-weight:700;font-size:12px;padding:8px 14px;border-radius:var(--r-s);text-decoration:none;text-align:center;">✉ Email</a>
+      <a href="https://instagram.com/clasificados.veneguayos" target="_blank" style="display:block;background:#fff;color:var(--azul);font-weight:700;font-size:12px;padding:8px 14px;border-radius:var(--r-s);text-decoration:none;text-align:center;">üì∑ Instagram</a>
+      <a href="mailto:clasificados.veneguayos@gmail.com?subject=Aviso de alojamiento para publicar" style="display:block;background:rgba(255,255,255,.15);color:#fff;font-weight:700;font-size:12px;padding:8px 14px;border-radius:var(--r-s);text-decoration:none;text-align:center;">‚úâ Email</a>
     </div>
   </div>
 </aside>
@@ -76,17 +76,17 @@
   <div style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap;align-items:center;">
     <div style="flex:1;min-width:200px;background:var(--blanco);border:1.5px solid var(--linea);border-radius:var(--r-s);display:flex;align-items:center;padding:0 14px;box-shadow:var(--sh-soft);">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--humo)" stroke-width="2" stroke-linecap="round" style="flex-shrink:0;margin-right:8px;"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input id="searchQ" type="text" placeholder="Buscar zona, barrio, características…" style="border:none;outline:none;padding:11px 0;font-size:14px;width:100%;font-family:var(--f-source);color:var(--tinta);background:transparent;">
+      <input id="searchQ" type="text" placeholder="Buscar zona, barrio, caracter√≠sticas‚Ä¶" style="border:none;outline:none;padding:11px 0;font-size:14px;width:100%;font-family:var(--f-source);color:var(--tinta);background:transparent;">
     </div>
     <select id="sortBy" class="form-select" style="width:auto;min-width:170px;">
-      <option value="newest">Más recientes</option>
+      <option value="newest">M√°s recientes</option>
       <option value="price_asc">Menor precio</option>
       <option value="price_desc">Mayor precio</option>
     </select>
   </div>
-  <div style="font-size:13px;color:var(--humo);margin-bottom:16px;font-family:var(--f-archivo);" id="resultCount">Cargando…</div>
+  <div style="font-size:13px;color:var(--humo);margin-bottom:16px;font-family:var(--f-archivo);" id="resultCount">Cargando‚Ä¶</div>
   <div class="cards-grid" id="alojList">
-    <div class="empty-state" style="grid-column:1/-1;"><div class="es-icon">⏳</div><p>Cargando avisos…</p></div>
+    <div class="empty-state" style="grid-column:1/-1;"><div class="es-icon">‚è≥</div><p>Cargando avisos‚Ä¶</p></div>
   </div>
 </section>
 </div>
@@ -124,8 +124,8 @@ function setPrecio(val) { maxPrecio = val; renderFiltered(); }
 
 function buildFilters(data) {
   const tiposDB = [...new Set(data.map(a=>a.tipo).filter(Boolean))];
-  const tiposExtra = ['Habitación','Apartamento','Residencia'].filter(t => !tiposDB.includes(t));
-  const tipos = [...tiposExtra, ...tiposDB.filter(t => !['Habitación','Apartamento','Residencia'].includes(t))];
+  const tiposExtra = ['Habitaci√≥n','Apartamento','Residencia'].filter(t => !tiposDB.includes(t));
+  const tipos = [...tiposExtra, ...tiposDB.filter(t => !['Habitaci√≥n','Apartamento','Residencia'].includes(t))];
   document.getElementById('tipoFilters').innerHTML = tipos.map(t => checkLabel(t, t, 'tipos')).join('');
   const zonasDB = [...new Set(data.map(a=>a.zona).filter(Boolean))];
   const zonasExtra = ['Interior'].filter(z => !zonasDB.includes(z));
@@ -143,19 +143,19 @@ function renderAlojCard(a) {
     <div style="height:5px;background:var(--vino);"></div>
     <div style="padding:20px 22px 22px;">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:12px;">
-        <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 13px;border-radius:var(--r-pill);background:rgba(142,31,63,.1);color:var(--vino);font-weight:700;font-size:13px;">🏠 ${a.tipo||'Alojamiento'}</span>
+        <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 13px;border-radius:var(--r-pill);background:rgba(142,31,63,.1);color:var(--vino);font-weight:700;font-size:13px;">üè† ${a.tipo||'Alojamiento'}</span>
         ${a.destacado?'<span style="background:var(--sol);color:#553a06;font-family:var(--f-archivo);font-weight:800;font-size:11px;padding:4px 10px;border-radius:var(--r-pill);">DESTACADO</span>':''}
       </div>
       <div style="font-family:var(--f-archivo);font-weight:800;font-size:21px;line-height:1.05;color:var(--tinta);margin-bottom:4px;">${a.titulo}</div>
       <div style="font-size:14px;font-weight:600;color:var(--piedra);margin-bottom:12px;">${a.zona}${a.barrio?', '+a.barrio:''}</div>
       <div style="display:flex;flex-wrap:wrap;gap:6px 16px;font-size:14px;color:var(--piedra);margin-bottom:14px;">
         ${a.precio_num?`<span style="font-family:var(--f-archivo);font-weight:800;color:var(--vino);font-size:17px;">${a.precio}</span>`:`<span style="font-weight:600;">${a.precio||'A convenir'}</span>`}
-        ${a.ambientes?`<span>🛏 ${a.ambientes}</span>`:''}
+        ${a.ambientes?`<span>üõè ${a.ambientes}</span>`:''}
         ${a.expensas?`<span>+ expensas</span>`:''}
       </div>
       ${a.descripcion?`<div style="font-size:14px;color:var(--piedra);line-height:1.55;margin-bottom:18px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${a.descripcion}</div>`:''}
       ${hasContact?`<div id="wrap_${uid}">
-        <button onclick="revealAloj('${uid}',${JSON.stringify(a).replace(/'/g,"\'")})" style="width:100%;border:none;cursor:pointer;background:var(--azul);color:#fff;font-family:var(--f-source);font-weight:700;font-size:15px;padding:13px 16px;border-radius:11px;display:flex;align-items:center;justify-content:center;gap:9px;transition:background .15s;" onmouseover="this.style.background='var(--azul-osc)'" onmouseout="this.style.background='var(--azul)'">
+        <button onclick="revealAloj('${uid}',${a.id})" style="width:100%;border:none;cursor:pointer;background:var(--azul);color:#fff;font-family:var(--f-source);font-weight:700;font-size:15px;padding:13px 16px;border-radius:11px;display:flex;align-items:center;justify-content:center;gap:9px;transition:background .15s;" onmouseover="this.style.background='var(--azul-osc)'" onmouseout="this.style.background='var(--azul)'">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/></svg>
           Ver datos de contacto
         </button>
@@ -164,7 +164,9 @@ function renderAlojCard(a) {
   </div>`;
 }
 
-function revealAloj(uid, a) {
+function revealAloj(uid, id) {
+  const a = allAloj.find(x => x.id == id);
+  if (!a) return;
   const waMsg = encodeURIComponent('Hola, vi el aviso de ' + a.titulo + ' en Clasificados VeneGuayos y me interesa.');
   const waNum = a.contacto_wa ? a.contacto_wa.replace(/\D/g,'') : '';
   const emailLink = a.contacto_email ? `<a href="mailto:${a.contacto_email}?subject=Consulta alojamiento: ${a.titulo}" style="display:flex;align-items:center;gap:11px;color:var(--tinta);text-decoration:none;font-weight:600;font-size:15px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--azul)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>${a.contacto_email}</a>` : '';
@@ -173,7 +175,7 @@ function revealAloj(uid, a) {
   if(wrap) wrap.innerHTML = `<div class="contact-block contact-anim">
     <div class="contact-block-head">Contacto del propietario</div>
     <div class="contact-block-body">${emailLink}${waLink}</div>
-    <div class="contact-block-foot">Información recibida del propietario. Para mayores detalles, consultar directamente.</div>
+    <div class="contact-block-foot">Informaci√≥n recibida del propietario. Para mayores detalles, consultar directamente.</div>
   </div>`;
 }
 
@@ -192,7 +194,7 @@ function renderFiltered() {
   document.getElementById('resultCount').textContent = `${data.length} aviso${data.length!==1?'s':''} encontrado${data.length!==1?'s':''}`;
   document.getElementById('alojList').innerHTML = data.length
     ? data.map(a=>renderAlojCard(a)).join('')
-    : '<div class="empty-state" style="grid-column:1/-1;"><div class="es-icon">🏠</div><h3>Sin resultados</h3><p>Probá con otros filtros o <a href="https://instagram.com/clasificados.veneguayos" target="_blank" style="color:var(--azul);">escribinos por Instagram</a> para más opciones.</p></div>';
+    : '<div class="empty-state" style="grid-column:1/-1;"><div class="es-icon">üè†</div><h3>Sin resultados</h3><p>Prob√° con otros filtros o <a href="https://instagram.com/clasificados.veneguayos" target="_blank" style="color:var(--azul);">escribinos por Instagram</a> para m√°s opciones.</p></div>';
 }
 
 document.getElementById('searchQ').addEventListener('input', renderFiltered);
@@ -206,7 +208,7 @@ async function loadAloj() {
     buildFilters(data);
     renderFiltered();
   } catch(e) {
-    document.getElementById('alojList').innerHTML = '<div class="empty-state" style="grid-column:1/-1;"><div class="es-icon">🏠</div><h3>Próximamente</h3><p>Estamos cargando los primeros avisos de alojamiento. Mientras tanto, <a href="https://instagram.com/clasificados.veneguayos" target="_blank" style="color:var(--azul);">escribinos por Instagram</a>.</p></div>';
+    document.getElementById('alojList').innerHTML = '<div class="empty-state" style="grid-column:1/-1;"><div class="es-icon">üè†</div><h3>Pr√≥ximamente</h3><p>Estamos cargando los primeros avisos de alojamiento. Mientras tanto, <a href="https://instagram.com/clasificados.veneguayos" target="_blank" style="color:var(--azul);">escribinos por Instagram</a>.</p></div>';
   }
 }
 loadAloj();
