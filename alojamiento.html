@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alojamiento \u00B7 Clasificados VeneGuayos</title>
+<title>Alojamiento &#183; Clasificados VeneGuayos</title>
 <meta name="description" content="Habitaciones y apartamentos en alquiler para venezolanos y migrantes en Uruguay.">
 <link rel="icon" href="assets/logo-mark.svg" type="image/svg+xml">
 <link rel="stylesheet" href="css/main.css">
@@ -42,7 +42,7 @@
     <div id="zonaFilters" style="display:flex;flex-direction:column;gap:7px;"></div>
   </div>
   <div style="background:var(--blanco);border:1px solid var(--linea);border-radius:var(--r-l);padding:20px;box-shadow:var(--sh-soft);">
-    <div style="font-family:var(--f-archivo);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--humo);margin-bottom:12px;">Precio m\u00E1ximo</div>
+    <div style="font-family:var(--f-archivo);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--humo);margin-bottom:12px;">Precio m&aacute;ximo</div>
     <div id="precioFilters" style="display:flex;flex-direction:column;gap:7px;">
       <label style="display:flex;align-items:center;gap:9px;font-size:13px;cursor:pointer;font-family:var(--f-source);color:var(--tinta);">
         <input type="radio" name="precio" value="all" checked onchange="setPrecio('')" style="accent-color:var(--azul);"> Cualquier precio
@@ -62,11 +62,11 @@
     </div>
   </div>
   <div style="background:var(--azul);border-radius:var(--r-l);padding:22px;color:#fff;text-align:center;">
-    <h3 style="font-family:var(--f-archivo);font-weight:800;font-size:15px;margin-bottom:8px;">\u00BFTen\u00E9s un alojamiento para alquilar?</h3>
-    <p style="font-size:12px;opacity:.8;margin-bottom:14px;line-height:1.55;">Lleg\u00E1 a m\u00E1s de 35.000 personas en Uruguay.</p>
+    <h3 style="font-family:var(--f-archivo);font-weight:800;font-size:15px;margin-bottom:8px;">&iquest;Ten&eacute;s un alojamiento para alquilar?</h3>
+    <p style="font-size:12px;opacity:.8;margin-bottom:14px;line-height:1.55;">Lleg&aacute; a m&aacute;s de 35.000 personas en Uruguay.</p>
     <div style="display:flex;flex-direction:column;gap:8px;">
-      <a href="https://instagram.com/clasificados.veneguayos" target="_blank" style="display:block;background:#fff;color:var(--azul);font-weight:700;font-size:12px;padding:8px 14px;border-radius:var(--r-s);text-decoration:none;text-align:center;">\u1F4F7 Instagram</a>
-      <a href="mailto:clasificados.veneguayos@gmail.com?subject=Aviso de alojamiento para publicar" style="display:block;background:rgba(255,255,255,.15);color:#fff;font-weight:700;font-size:12px;padding:8px 14px;border-radius:var(--r-s);text-decoration:none;text-align:center;">\u2709 Email</a>
+      <a href="https://instagram.com/clasificados.veneguayos" target="_blank" style="display:block;background:#fff;color:var(--azul);font-weight:700;font-size:12px;padding:8px 14px;border-radius:var(--r-s);text-decoration:none;text-align:center;">&#8015;7 Instagram</a>
+      <a href="mailto:clasificados.veneguayos@gmail.com?subject=Aviso de alojamiento para publicar" style="display:block;background:rgba(255,255,255,.15);color:#fff;font-weight:700;font-size:12px;padding:8px 14px;border-radius:var(--r-s);text-decoration:none;text-align:center;">&#9993; Email</a>
     </div>
   </div>
 </aside>
@@ -76,17 +76,17 @@
   <div style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap;align-items:center;">
     <div style="flex:1;min-width:200px;background:var(--blanco);border:1.5px solid var(--linea);border-radius:var(--r-s);display:flex;align-items:center;padding:0 14px;box-shadow:var(--sh-soft);">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--humo)" stroke-width="2" stroke-linecap="round" style="flex-shrink:0;margin-right:8px;"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input id="searchQ" type="text" placeholder="Buscar zona, barrio, caracter\u00EDsticas\u2026" style="border:none;outline:none;padding:11px 0;font-size:14px;width:100%;font-family:var(--f-source);color:var(--tinta);background:transparent;">
+      <input id="searchQ" type="text" placeholder="Buscar zona, barrio, caracter&iacute;sticas&#8230;" style="border:none;outline:none;padding:11px 0;font-size:14px;width:100%;font-family:var(--f-source);color:var(--tinta);background:transparent;">
     </div>
     <select id="sortBy" class="form-select" style="width:auto;min-width:170px;">
-      <option value="newest">M\u00E1s recientes</option>
+      <option value="newest">M&aacute;s recientes</option>
       <option value="price_asc">Menor precio</option>
       <option value="price_desc">Mayor precio</option>
     </select>
   </div>
-  <div style="font-size:13px;color:var(--humo);margin-bottom:16px;font-family:var(--f-archivo);" id="resultCount">Cargando\u2026</div>
+  <div style="font-size:13px;color:var(--humo);margin-bottom:16px;font-family:var(--f-archivo);" id="resultCount">Cargando&#8230;</div>
   <div class="cards-grid" id="alojList">
-    <div class="empty-state" style="grid-column:1/-1;"><div class="es-icon">\u23F3</div><p>Cargando avisos\u2026</p></div>
+    <div class="empty-state" style="grid-column:1/-1;"><div class="es-icon">&#9203;</div><p>Cargando avisos&#8230;</p></div>
   </div>
 </section>
 </div>
